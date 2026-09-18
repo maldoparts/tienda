@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaldoParts — Autopartes y Competición</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #121212;
+      --bg-card: #1E1E1E;
+      --bg-card-hover: #262626;
+      --primary-red: #E50914;
+      --primary-red-hover: #B80710;
+      --text-white: #FFFFFF;
+      --text-gray: #A0A0A0;
+      --border-color: #2A2A2A;
+      --font-title: 'Teko', sans-serif;
+      --font-body: 'Roboto', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      line-height: 1.5;
+    }
+
+    /* HEADER */
+    header {
+      background-color: #0A0A0A;
+      border-bottom: 2px solid var(--primary-red);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      height: 50px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      color: var(--text-white);
+      text-transform: uppercase;
+    }
+
+    .brand-name span {
+      color: var(--primary-red);
+    }
+
+    .search-box {
+      position: relative;
+      width: 300px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.6rem 1rem 0.6rem 2.5rem;
+      background: #1A1A1A;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      color: white;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary-red);
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-gray);
+    }
+
+    /* HERO BANNER */
+    .hero {
+      background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)),
+                  url('https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1350&q=80') center/cover;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero h1 {
+      font-family: var(--font-title);
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      color: var(--text-gray);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0.5rem auto 0;
+    }
+
+    /* CATEGORIES NAV */
+    .categories-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: #0D0D0D;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cat-btn {
+      background: var(--bg-card);
+      color: var(--text-white);
+      border: 1px solid var(--border-color);
+      padding: 0.7rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cat-btn.active, .cat-btn:hover {
+      background: var(--primary-red);
+      border-color: var(--primary-red);
+    }
+
+    /* MAIN CATALOG CONTAINER */
+    .catalog-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .category-title {
+      font-family: var(--font-title);
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      border-left: 4px solid var(--primary-red);
+      padding-left: 1rem;
+      margin: 2rem 0 1rem;
+      text-transform: uppercase;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* PRODUCT CARD */
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary-red);
+      background: var(--bg-card-hover);
+    }
+
+    .product-info h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-price {
+      color: var(--primary-red);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      background: #121212;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+    }
+
+    .quantity-controls button {
+      background: transparent;
+      color: white;
+      border: none;
+      width: 30px;
+      height: 35px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .quantity-controls span {
+      width: 30px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .btn-add {
+      flex: 1;
+      background: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .btn-add:hover {
+      background: var(--primary-red-hover);
+    }
+
+    /* FLOATING CART BAR */
+    .cart-float-bar {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0A0A0A;
+      border: 2px solid var(--primary-red);
+      border-radius: 15px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      z-index: 99;
+    }
+
+    .cart-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-count {
+      font-size: 0.9rem;
+      color: var(--text-gray);
+    }
+
+    .cart-total {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .btn-checkout {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s;
+    }
+
+    .btn-checkout:hover {
+      opacity: 0.9;
+    }
+
+    /* MODAL ORDER FORM */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      border: 1px solid var(--primary-red);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .modal-content h2 {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--text-gray);
+      font-size: 0.9rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.7rem;
+      background: #121212;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: white;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn-cancel {
+      flex: 1;
+      background: #333;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-send {
+      flex: 2;
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #050505;
+      border-top: 1px solid var(--border-color);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      color: var(--text-gray);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .search-box {
+        width: 100%;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .cart-float-bar {
+        width: 90%;
+        left: 5%;
+        right: 5%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand-container">
+      <!-- IMAGEN DEL LOGO -->
+      <img src="foto.png" alt="MaldoParts Logo" class="brand-logo">
+      <div class="brand-name">MALDO<span>PARTS</span></div>
+    </div>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Buscar autoparte..." onkeyup="filterProducts()">
+    </div>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <h1>AUTOPARTES DE COMPETICIÓN</h1>
+    <p>Seleccioná tus componentes, armá tu pedido personalizado y recibilo directamente en tu WhatsApp.</p>
+  </section>
+
+  <!-- NAVEGACIÓN DE CATÁLOGOS -->
+  <nav class="categories-nav">
+    <button class="cat-btn active" onclick="filterCategory('all')"><i class="fa-solid fa-border-all"></i> Todos</button>
+    <button class="cat-btn" onclick="filterCategory('volantes')"><i class="fa-solid fa-circle-notch"></i> Volantes</button>
+    <button class="cat-btn" onclick="filterCategory('masas')"><i class="fa-solid fa-gear"></i> Masas</button>
+    <button class="cat-btn" onclick="filterCategory('otros')"><i class="fa-solid fa-wrench"></i> Otros</button>
+  </nav>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="catalog-container" id="catalog"></main>
+
+  <!-- BARRA FLOTANTE DEL CARRITO -->
+  <div class="cart-float-bar" id="cartBar" style="display: none;">
+    <div class="cart-info">
+      <span class="cart-count" id="cartCount">0 productos seleccionados</span>
+      <span class="cart-total" id="cartTotal">$0</span>
+    </div>
+    <button class="btn-checkout" onclick="openOrderModal()">
+      <i class="fa-brands fa-whatsapp fa-lg"></i> Enviar Pedido
+    </button>
+  </div>
+
+  <!-- MODAL DE DATOS PARA WHATSAPP -->
+  <div class="modal-backdrop" id="orderModal">
+    <div class="modal-content">
+      <h2>CONFIRMAR PEDIDO</h2>
+      <p style="color: var(--text-gray); margin-bottom: 1rem; font-size: 0.9rem;">
+        Completá tus datos para adjuntarlos al mensaje automático de WhatsApp:
+      </p>
+      <div class="form-group">
+        <label>Nombre y Apellido</label>
+        <input type="text" id="custName" placeholder="Ej: Juan Pérez">
+      </div>
+      <div class="form-group">
+        <label>Ubicación / Ciudad</label>
+        <input type="text" id="custCity" placeholder="Ej: Buenos Aires">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeOrderModal()">Cancelar</button>
+        <button class="btn-send" onclick="sendWhatsAppOrder()">
+          <i class="fa-brands fa-whatsapp"></i> Mandar a WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 <strong>MaldoParts</strong>. Todos los derechos reservados.</p>
+    <p>Especialistas en autopartes, accesorios y equipamiento automotriz.</p>
+  </footer>
+
+  <script>
+    // NÚMERO DE WHATSAPP CONFIGURADO
+    const WHATSAPP_NUMBER = "5491164016408";
+
+    // PRODUCTOS ORGANIZADOS POR CATEGORÍA
+    const productsData = [
+      // VOLANTES
+      { id: 1, name: "Volante Stick Perforado 35cm", price: 50000, category: "volantes" },
+      { id: 2, name: "Volante Stick Gamuzado 35cm", price: 64000, category: "volantes" },
+      { id: 3, name: "Volante Onfire Gamuzado 35cm", price: 62000, category: "volantes" },
+      { id: 4, name: "Volante Onfire Perforado 35cm", price: 48000, category: "volantes" },
+      { id: 5, name: "Volante Nitro Gamuzado 35cm", price: 65000, category: "volantes" },
+      { id: 6, name: "Volante Nitro Perforado 35cm", price: 51000, category: "volantes" },
+      { id: 7, name: "Volante Galant Perforado 35cm", price: 56000, category: "volantes" },
+      { id: 8, name: "Volante Galant Gamuzado 35cm", price: 72000, category: "volantes" },
+      { id: 9, name: "Volante Galant Tapizado 38cm", price: 85000, category: "volantes" },
+      { id: 10, name: "Volante Classic Tapizado 38cm", price: 85000, category: "volantes" },
+      { id: 11, name: "Volante Oldfresh Tapizado 38cm", price: 85000, category: "volantes" },
+      { id: 12, name: "Volante Oldfresh Tapizado 40cm", price: 89000, category: "volantes" },
+      { id: 13, name: "Volante Oldfresh Perforado 35cm", price: 58000, category: "volantes" },
+      { id: 14, name: "Volante Oldfresh Gamuzado 35cm", price: 73000, category: "volantes" },
+      { id: 15, name: "Volante Nova Gam. Hilo Rojo (plano) 35cm", price: 60000, category: "volantes" },
+      { id: 16, name: "Volante Nova Gam. Hilo Amarillo (plano) 35cm", price: 60000, category: "volantes" },
+      { id: 17, name: "Volante Flux Perforado 35cm", price: 48000, category: "volantes" },
+      { id: 18, name: "Volante Flux Gamuzado 35cm", price: 60000, category: "volantes" },
+      { id: 19, name: "Volante Karting 32cm Mychron", price: 58000, category: "volantes" },
+
+      // MASAS
+      { id: 20, name: "Masa Ford Escort / Fiesta + kit tornillos", price: 67000, category: "masas" },
+      { id: 21, name: "Masa Volkswagen Gol / Senda + kit tornillos", price: 62000, category: "masas" },
+      { id: 22, name: "Masa Fiat Estira Gruesa o Fina + kit tornillos", price: 60000, category: "masas" },
+      { id: 23, name: "Masa Corsa + kit tornillos", price: 60000, category: "masas" },
+      { id: 24, name: "Masa Chevrolet 400 / C10 / Silverado", price: 57000, category: "masas" },
+      { id: 25, name: "Masa Ford Falcon / F100", price: 57000, category: "masas" },
+      { id: 26, name: "Masa Peugeot 205/405/505 + kit tornillos", price: 65000, category: "masas" },
+      { id: 27, name: "Masa Renault 12/11/9/19 + kit tornillos", price: 60000, category: "masas" },
+      { id: 28, name: "Masa Renault Megane/Kangoo + kit tornillos", price: 60000, category: "masas" },
+      { id: 29, name: "Masa Corsa 2 / Astra + kit de tornillos", price: 60000, category: "masas" },
+      { id: 30, name: "Masa Fiat Palio Estira Fina + kit tornillos", price: 65000, category: "masas" },
+
+      // OTROS
+      { id: 31, name: "Adaptador Entrec... 80 mm a 70 mm", price: 22000, category: "otros" },
+      { id: 32, name: "Kit 6 tornillos + 6 arandelas para volante", price: 19000, category: "otros" },
+      { id: 33, name: "Pomo perforados teflón", price: 14300, category: "otros" },
+      { id: 34, name: "Pomo liso teflón", price: 13000, category: "otros" },
+      { id: 35, name: "Pomo aluminio liso", price: 25000, category: "otros" },
+      { id: 36, name: "Pomo aluminio perforado", price: 27000, category: "otros" },
+      { id: 37, name: "Pomo aluminio perforado NEGRO!", price: 30000, category: "otros" },
+      { id: 38, name: "Pomo aluminio perforado con pulsador", price: 30000, category: "otros" },
+      { id: 39, name: "Pomo aluminio liso con pulsador", price: 27000, category: "otros" },
+      { id: 40, name: "Pomo liso teflón con pulsador", price: 15500, category: "otros" },
+      { id: 41, name: "Varillas selectora caja Lancia. Con rotulas", price: 78000, category: "otros" },
+      { id: 42, name: "Selectora completa caja lancia rotulada", price: 215000, category: "otros" },
+      { id: 43, name: "Selectora completa vw gol/senda rotulada", price: 150000, category: "otros" },
+      { id: 44, name: "Palanca selectora caja lancia sin pomo", price: 28000, category: "otros" },
+      { id: 45, name: "Strut bar Fiat uno/147/128", price: 50000, category: "otros" },
+      { id: 46, name: "Eleva capo fiat 147/128", price: 10000, category: "otros" },
+      { id: 47, name: "Pulsador leva al volante", price: 42000, category: "otros" },
+      { id: 48, name: "Kit pulsador para volante ONFIRE", price: 35000, category: "otros" },
+      { id: 49, name: "Kit pulsador para volante GALANT O STICK", price: 35000, category: "otros" },
+      { id: 50, name: "Soportes de butaca competicion", price: 45000, category: "otros" },
+      { id: 51, name: "Torre selectora caja lancia", price: 43000, category: "otros" },
+      { id: 52, name: "Pata motor Fiat 147 lado caja", price: 41000, category: "otros" },
+      { id: 53, name: "Pata motor Fiat 147 lado distribucion", price: 41000, category: "otros" },
+      { id: 54, name: "Pata de caja Fiat Lancia Puente 128/147", price: 46000, category: "otros" },
+      { id: 55, name: "Deflector Gol/senda/saveiro G1", price: 25000, category: "otros" },
+      { id: 56, name: "Tapas cubre calefaccion fiat /147/128/UNO", price: 16000, category: "otros" },
+      { id: 57, name: "Patas de motor VW gol/senda/saveiro", price: 68000, category: "otros" },
+      { id: 58, name: "Pata de caja gol/senda/saveiro", price: 41000, category: "otros" }
+    ];
+
+    let cart = {};
+    let currentCategory = 'all';
+
+    // RENDER CATALOG PRODUCTS
+    function renderCatalog() {
+      const catalogEl = document.getElementById('catalog');
+      catalogEl.innerHTML = '';
+
+      const categories = [
+        { id: 'volantes', title: '🏎️ Volantes' },
+        { id: 'masas', title: '⚙️ Masas' },
+        { id: 'otros', title: '🛠️ Otros' }
+      ];
+
+      categories.forEach(cat => {
+        if (currentCategory !== 'all' && currentCategory !== cat.id) return;
+
+        const filteredProds = productsData.filter(p => p.category === cat.id);
+
+        if (filteredProds.length > 0) {
+          const catHeader = document.createElement('h2');
+          catHeader.className = 'category-title';
+          catHeader.innerText = cat.title;
+          catalogEl.appendChild(catHeader);
+
+          const grid = document.createElement('div');
+          grid.className = 'products-grid';
+
+          filteredProds.forEach(prod => {
+            const qty = cart[prod.id] || 0;
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+              <div class="product-info">
+                <h3>${prod.name}</h3>
+                <div class="product-price">$${prod.price.toLocaleString('es-AR')}</div>
+              </div>
+              <div class="card-actions">
+                <div class="quantity-controls">
+                  <button onclick="changeQty(${prod.id}, -1)">-</button>
+                  <span id="qty-${prod.id}">${qty}</span>
+                  <button onclick="changeQty(${prod.id}, 1)">+</button>
+                </div>
+                <button class="btn-add" onclick="changeQty(${prod.id}, 1)">
+                  ${qty > 0 ? 'Añadido' : 'Agregar'}
+                </button>
+              </div>
+            `;
+            grid.appendChild(card);
+          });
+
+          catalogEl.appendChild(grid);
+        }
+      });
+    }
+
+    // QUANTITY MANAGEMENT
+    function changeQty(productId, change) {
+      const currentQty = cart[productId] || 0;
+      const newQty = Math.max(0, currentQty + change);
+
+      if (newQty === 0) {
+        delete cart[productId];
+      } else {
+        cart[productId] = newQty;
+      }
+
+      const qtySpan = document.getElementById(`qty-${productId}`);
+      if (qtySpan) qtySpan.innerText = newQty;
+
+      updateCartBar();
+    }
+
+    // UPDATE FLOATING BAR
+    function updateCartBar() {
+      const cartBar = document.getElementById('cartBar');
+      const cartCount = document.getElementById('cartCount');
+      const cartTotal = document.getElementById('cartTotal');
+
+      let totalItems = 0;
+      let totalPrice = 0;
+
+      for (const [id, qty] of Object.entries(cart)) {
+        const prod = productsData.find(p => p.id == id);
+        if (prod) {
+          totalItems += qty;
+          totalPrice += prod.price * qty;
+        }
+      }
+
+      if (totalItems > 0) {
+        cartBar.style.display = 'flex';
+        cartCount.innerText = `${totalItems} producto${totalItems > 1 ? 's' : ''} seleccionado${totalItems > 1 ? 's' : ''}`;
+        cartTotal.innerText = `$${totalPrice.toLocaleString('es-AR')}`;
+      } else {
+        cartBar.style.display = 'none';
+      }
+    }
+
+    // CATEGORY FILTERING
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      renderCatalog();
+    }
+
+    // SEARCH FILTER
+    function filterProducts() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.product-card');
+
+      cards.forEach(card => {
+        const title = card.querySelector('h3').innerText.toLowerCase();
+        if (title.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // MODAL CONTROL
+    function openOrderModal() {
+      document.getElementById('orderModal').style.display = 'flex';
+    }
+
+    function closeOrderModal() {
+      document.getElementById('orderModal').style.display = 'none';
+    }
+
+    // SEND WHATSAPP MESSAGE
+    function sendWhatsAppOrder() {
+      const name = document.getElementById('custName').value.trim();
+      const city = document.getElementById('custCity').value.trim();
+
+      if (!name) {
+        alert("Por favor ingresá tu nombre para continuar.");
+        return;
+      }
+
+      let orderDetails = "";
+      let totalPrice = 0;
+
+      for (const [id, qty] of Object.entries(cart)) {
+        const prod = productsData.find(p => p.id == id);
+        if (prod) {
+          const itemTotal = prod.price * qty;
+          totalPrice += itemTotal;
+          orderDetails += `• ${qty}x ${prod.name} — $${itemTotal.toLocaleString('es-AR')}\n`;
+        }
+      }
+
+      let message = `¡Hola *MaldoParts*! 👋 Quisiera realizar la siguiente compra:\n\n`;
+      message += `🛒 *DETALLE DEL PEDIDO:*\n${orderDetails}\n`;
+      message += `💰 *TOTAL ESTIMADO:* $${totalPrice.toLocaleString('es-AR')}\n\n`;
+      message += `👤 *DATOS DEL CLIENTE:*\n`;
+      message += `- *Nombre:* ${name}\n`;
+      if (city) message += `- *Ubicación:* ${city}\n`;
+      message += `\nQuedo a la espera para coordinar el pago y envío. ¡Muchas gracias!`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+      window.open(whatsappUrl, '_blank');
+      closeOrderModal();
+    }
+
+    // INITIAL RENDER
+    renderCatalog();
+  </script>
+</body>
+</html>
