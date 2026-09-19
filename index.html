@@ -197,7 +197,7 @@
       background: var(--bg-card-hover);
     }
 
-    /* MARCO CUADRADO 1:1 APTO PARA 1280x1280 */
+    /* MARCO CUADRADO PERFECTO 1:1 PARA IMÁGENES 1280x1280 */
     .product-image-wrapper {
       width: 100%;
       aspect-ratio: 1 / 1;
@@ -450,14 +450,330 @@
     </div>
     <div class="search-box">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" placeholder="Buscar autoparte..." on¡Claramente! Podés modificar la lógica para que valide la existencia de la imagen antes de renderizarla. Si no hay imagen disponible, simplemente salta esa parte y no dibuja ningún texto ni contenedor.
+      <input type="text" id="searchInput" placeholder="Buscar autoparte..." onkeyup="filterProducts()">
+    </div>
+  </header>
 
-Dependiendo de cómo estés armando tu código, podés implementarlo así:
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <h1>AUTOPARTES DE COMPETICIÓN</h1>
+    <p>Seleccioná tus componentes, armá tu pedido personalizado y recibilo directamente en tu WhatsApp.</p>
+  </section>
 
-**Opción 1: Renderizado condicional (React / JSX)**
-Usá el operador `&&` para que el elemento solo se cree si existe la URL de la imagen:
+  <!-- NAVEGACIÓN DE CATÁLOGOS -->
+  <nav class="categories-nav">
+    <button class="cat-btn active" onclick="filterCategory('all', event)"><i class="fa-solid fa-border-all"></i> Todos</button>
+    <button class="cat-btn" onclick="filterCategory('volantes', event)"><i class="fa-solid fa-circle-notch"></i> Volantes</button>
+    <button class="cat-btn" onclick="filterCategory('masas', event)"><i class="fa-solid fa-gear"></i> Masas</button>
+    <button class="cat-btn" onclick="filterCategory('otros', event)"><i class="fa-solid fa-wrench"></i> Otros</button>
+  </nav>
 
-```jsx
-{producto.imagenUrl && (
-  <img src={producto.imagenUrl} alt={producto.nombre} />
-)}
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="catalog-container" id="catalog"></main>
+
+  <!-- BARRA FLOTANTE DEL CARRITO -->
+  <div class="cart-float-bar" id="cartBar" style="display: none;">
+    <div class="cart-info">
+      <span class="cart-count" id="cartCount">0 productos seleccionados</span>
+      <span class="cart-total" id="cartTotal">$0</span>
+    </div>
+    <button class="btn-checkout" onclick="openOrderModal()">
+      <i class="fa-brands fa-whatsapp fa-lg"></i> Enviar Pedido
+    </button>
+  </div>
+
+  <!-- MODAL DE DATOS PARA WHATSAPP -->
+  <div class="modal-backdrop" id="orderModal">
+    <div class="modal-content">
+      <h2>CONFIRMAR PEDIDO</h2>
+      <p style="color: var(--text-gray); margin-bottom: 1rem; font-size: 0.9rem;">
+        Completá tus datos para adjuntarlos al mensaje automático de WhatsApp:
+      </p>
+      <div class="form-group">
+        <label>Nombre y Apellido</label>
+        <input type="text" id="custName" placeholder="Ej: Juan Pérez">
+      </div>
+      <div class="form-group">
+        <label>Ubicación / Ciudad</label>
+        <input type="text" id="custCity" placeholder="Ej: Buenos Aires">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeOrderModal()">Cancelar</button>
+        <button class="btn-send" onclick="sendWhatsAppOrder()">
+          <i class="fa-brands fa-whatsapp"></i> Mandar a WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 <strong>MaldoParts</strong>. Todos los derechos reservados.</p>
+    <p>Especialistas en autopartes, accesorios y equipamiento automotriz.</p>
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = "5491164016408";
+
+    // PRODUCTOS CON SUS IMÁGENES ASIGNADAS
+    const productsData = [
+      // VOLANTES
+      { id: 1, name: "Volante Stick Perforado 35cm", price: 50000, category: "volantes", image: "volante1.png" },
+      { id: 2, name: "Volante Stick Gamuzado 35cm", price: 64000, category: "volantes", image: "volante2.png" },
+      { id: 3, name: "Volante Onfire Gamuzado 35cm", price: 62000, category: "volantes", image: "volante3.png" },
+      { id: 4, name: "Volante Onfire Perforado 35cm", price: 48000, category: "volantes", image: "volante4.png" },
+      { id: 5, name: "Volante Nitro Gamuzado 35cm", price: 65000, category: "volantes", image: "volante5.png" },
+      { id: 6, name: "Volante Nitro Perforado 35cm", price: 51000, category: "volantes", image: "volante6.png" },
+      { id: 7, name: "Volante Galant Perforado 35cm", price: 56000, category: "volantes", image: "volante7.png" },
+      { id: 8, name: "Volante Galant Gamuzado 35cm", price: 72000, category: "volantes", image: "volante8.png" },
+      { id: 9, name: "Volante Galant Tapizado 38cm", price: 85000, category: "volantes", image: "volante9.png" },
+      { id: 10, name: "Volante Classic Tapizado 38cm", price: 85000, category: "volantes", image: "volante10.png" },
+      { id: 11, name: "Volante Oldfresh Tapizado 38cm", price: 85000, category: "volantes", image: "volante11.png" },
+      { id: 12, name: "Volante Oldfresh Tapizado 40cm", price: 89000, category: "volantes", image: "volante12.png" },
+      { id: 13, name: "Volante Oldfresh Perforado 35cm", price: 58000, category: "volantes", image: "volante13.png" },
+      { id: 14, name: "Volante Oldfresh Gamuzado 35cm", price: 73000, category: "volantes", image: "volante14.png" },
+      { id: 15, name: "Volante Nova Gam. Hilo Rojo (plano) 35cm", price: 60000, category: "volantes", image: "volante15.png" },
+      { id: 16, name: "Volante Nova Gam. Hilo Amarillo (plano) 35cm", price: 60000, category: "volantes", image: "volante16.png" },
+      { id: 17, name: "Volante Flux Perforado 35cm", price: 48000, category: "volantes", image: "volante17.png" },
+      { id: 18, name: "Volante Flux Gamuzado 35cm", price: 60000, category: "volantes", image: "volante18.png" },
+      { id: 19, name: "Volante Karting 32cm Mychron", price: 58000, category: "volantes", image: "volante19.png" },
+
+      // MASAS
+      { id: 20, name: "Masa Ford Escort / Fiesta + kit tornillos", price: 67000, category: "masas" },
+      { id: 21, name: "Masa Volkswagen Gol / Senda + kit tornillos", price: 62000, category: "masas" },
+      { id: 22, name: "Masa Fiat Estira Gruesa o Fina + kit tornillos", price: 60000, category: "masas" },
+      { id: 23, name: "Masa Corsa + kit tornillos", price: 60000, category: "masas" },
+      { id: 24, name: "Masa Chevrolet 400 / C10 / Silverado", price: 57000, category: "masas" },
+      { id: 25, name: "Masa Ford Falcon / F100", price: 57000, category: "masas" },
+      { id: 26, name: "Masa Peugeot 205/405/505 + kit tornillos", price: 65000, category: "masas" },
+      { id: 27, name: "Masa Renault 12/11/9/19 + kit tornillos", price: 60000, category: "masas" },
+      { id: 28, name: "Masa Renault Megane/Kangoo + kit tornillos", price: 60000, category: "masas" },
+      { id: 29, name: "Masa Corsa 2 / Astra + kit de tornillos", price: 60000, category: "masas" },
+      { id: 30, name: "Masa Fiat Palio Estira Fina + kit tornillos", price: 65000, category: "masas" },
+
+      // OTROS
+      { id: 31, name: "Adaptador Entrec... 80 mm a 70 mm", price: 22000, category: "otros" },
+      { id: 32, name: "Kit 6 tornillos + 6 arandelas para volante", price: 19000, category: "otros" },
+      { id: 33, name: "Pomo perforados teflón", price: 14300, category: "otros" },
+      { id: 34, name: "Pomo liso teflón", price: 13000, category: "otros" },
+      { id: 35, name: "Pomo aluminio liso", price: 25000, category: "otros" },
+      { id: 36, name: "Pomo aluminio perforado", price: 27000, category: "otros" },
+      { id: 37, name: "Pomo aluminio perforado NEGRO!", price: 30000, category: "otros" },
+      { id: 38, name: "Pomo aluminio perforado con pulsador", price: 30000, category: "otros" },
+      { id: 39, name: "Pomo aluminio liso con pulsador", price: 27000, category: "otros" },
+      { id: 40, name: "Pomo liso teflón con pulsador", price: 15500, category: "otros" },
+      { id: 41, name: "Varillas selectora caja Lancia. Con rotulas", price: 78000, category: "otros" },
+      { id: 42, name: "Selectora completa caja lancia rotulada", price: 215000, category: "otros" },
+      { id: 43, name: "Selectora completa vw gol/senda rotulada", price: 150000, category: "otros" },
+      { id: 44, name: "Palanca selectora caja lancia sin pomo", price: 28000, category: "otros" },
+      { id: 45, name: "Strut bar Fiat uno/147/128", price: 50000, category: "otros" },
+      { id: 46, name: "Eleva capo fiat 147/128", price: 10000, category: "otros" },
+      { id: 47, name: "Pulsador leva al volante", price: 42000, category: "otros" },
+      { id: 48, name: "Kit pulsador para volante ONFIRE", price: 35000, category: "otros" },
+      { id: 49, name: "Kit pulsador para volante GALANT O STICK", price: 35000, category: "otros" },
+      { id: 50, name: "Soportes de butaca competicion", price: 45000, category: "otros" },
+      { id: 51, name: "Torre selectora caja lancia", price: 43000, category: "otros" },
+      { id: 52, name: "Pata motor Fiat 147 lado caja", price: 41000, category: "otros" },
+      { id: 53, name: "Pata motor Fiat 147 lado distribucion", price: 41000, category: "otros" },
+      { id: 54, name: "Pata de caja Fiat Lancia Puente 128/147", price: 46000, category: "otros" },
+      { id: 55, name: "Deflector Gol/senda/saveiro G1", price: 25000, category: "otros" },
+      { id: 56, name: "Tapas cubre calefaccion fiat /147/128/UNO", price: 16000, category: "otros" },
+      { id: 57, name: "Patas de motor VW gol/senda/saveiro", price: 68000, category: "otros" },
+      { id: 58, name: "Pata de caja gol/senda/saveiro", price: 41000, category: "otros" }
+    ];
+
+    let cart = {};
+    let currentCategory = 'all';
+
+    // RENDER CATALOG PRODUCTS
+    function renderCatalog() {
+      const catalogEl = document.getElementById('catalog');
+      catalogEl.innerHTML = '';
+
+      const categories = [
+        { id: 'volantes', title: '🏎️ Volantes' },
+        { id: 'masas', title: '⚙️ Masas' },
+        { id: 'otros', title: '🛠️ Otros' }
+      ];
+
+      categories.forEach(cat => {
+        if (currentCategory !== 'all' && currentCategory !== cat.id) return;
+
+        const filteredProds = productsData.filter(p => p.category === cat.id);
+
+        if (filteredProds.length > 0) {
+          const catHeader = document.createElement('h2');
+          catHeader.className = 'category-title';
+          catHeader.innerText = cat.title;
+          catalogEl.appendChild(catHeader);
+
+          const grid = document.createElement('div');
+          grid.className = 'products-grid';
+
+          filteredProds.forEach(prod => {
+            const qty = cart[prod.id] || 0;
+            const card = document.createElement('div');
+            card.className = 'product-card';
+
+            // SOLAMENTE DIBUJA EL CONTENEDOR SI HAY UNA IMAGEN DEFINIDA
+            let imageHtml = '';
+            if (prod.image) {
+              imageHtml = `
+                <div class="product-image-wrapper">
+                  <img src="${prod.image}" alt="${prod.name}" onerror="handleImageError(this)">
+                </div>
+              `;
+            }
+
+            card.innerHTML = `
+              ${imageHtml}
+              <div class="product-info">
+                <h3>${prod.name}</h3>
+                <div class="product-price">$${prod.price.toLocaleString('es-AR')}</div>
+              </div>
+              <div class="card-actions">
+                <div class="quantity-controls">
+                  <button onclick="changeQty(${prod.id}, -1)">-</button>
+                  <span id="qty-${prod.id}">${qty}</span>
+                  <button onclick="changeQty(${prod.id}, 1)">+</button>
+                </div>
+                <button class="btn-add" onclick="changeQty(${prod.id}, 1)">
+                  ${qty > 0 ? 'Añadido' : 'Agregar'}
+                </button>
+              </div>
+            `;
+            grid.appendChild(card);
+          });
+
+          catalogEl.appendChild(grid);
+        }
+      });
+    }
+
+    // SI LA IMAGEN NO EXISTE O TODAVÍA NO SE SUBIÓ A GITHUB, SE REMUEVE EL CONTENEDOR SIN MOSTRAR RECUADROS NI TEXTOS
+    function handleImageError(imgElement) {
+      const container = imgElement.parentElement;
+      if (container) {
+        container.remove();
+      }
+    }
+
+    // QUANTITY MANAGEMENT
+    function changeQty(productId, change) {
+      const currentQty = cart[productId] || 0;
+      const newQty = Math.max(0, currentQty + change);
+
+      if (newQty === 0) {
+        delete cart[productId];
+      } else {
+        cart[productId] = newQty;
+      }
+
+      const qtySpan = document.getElementById(`qty-${productId}`);
+      if (qtySpan) qtySpan.innerText = newQty;
+
+      updateCartBar();
+    }
+
+    // UPDATE FLOATING BAR
+    function updateCartBar() {
+      const cartBar = document.getElementById('cartBar');
+      const cartCount = document.getElementById('cartCount');
+      const cartTotal = document.getElementById('cartTotal');
+
+      let totalItems = 0;
+      let totalPrice = 0;
+
+      for (const [id, qty] of Object.entries(cart)) {
+        const prod = productsData.find(p => p.id == id);
+        if (prod) {
+          totalItems += qty;
+          totalPrice += prod.price * qty;
+        }
+      }
+
+      if (totalItems > 0) {
+        cartBar.style.display = 'flex';
+        cartCount.innerText = `${totalItems} producto${totalItems > 1 ? 's' : ''} seleccionado${totalItems > 1 ? 's' : ''}`;
+        cartTotal.innerText = `$${totalPrice.toLocaleString('es-AR')}`;
+      } else {
+        cartBar.style.display = 'none';
+      }
+    }
+
+    // CATEGORY FILTERING
+    function filterCategory(cat, evt) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+      if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add('active');
+      }
+      renderCatalog();
+    }
+
+    // SEARCH FILTER
+    function filterProducts() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.product-card');
+
+      cards.forEach(card => {
+        const title = card.querySelector('h3').innerText.toLowerCase();
+        if (title.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // MODAL CONTROL
+    function openOrderModal() {
+      document.getElementById('orderModal').style.display = 'flex';
+    }
+
+    function closeOrderModal() {
+      document.getElementById('orderModal').style.display = 'none';
+    }
+
+    // SEND WHATSAPP MESSAGE
+    function sendWhatsAppOrder() {
+      const name = document.getElementById('custName').value.trim();
+      const city = document.getElementById('custCity').value.trim();
+
+      if (!name) {
+        alert("Por favor ingresá tu nombre para continuar.");
+        return;
+      }
+
+      let orderDetails = "";
+      let totalPrice = 0;
+
+      for (const [id, qty] of Object.entries(cart)) {
+        const prod = productsData.find(p => p.id == id);
+        if (prod) {
+          const itemTotal = prod.price * qty;
+          totalPrice += itemTotal;
+          orderDetails += `• ${qty}x ${prod.name} — $${itemTotal.toLocaleString('es-AR')}\n`;
+        }
+      }
+
+      let message = `¡Hola *MaldoParts*! 👋 Quisiera realizar la siguiente compra:\n\n`;
+      message += `🛒 *DETALLE DEL PEDIDO:*\n${orderDetails}\n`;
+      message += `💰 *TOTAL ESTIMADO:* $${totalPrice.toLocaleString('es-AR')}\n\n`;
+      message += `👤 *DATOS DEL CLIENTE:*\n`;
+      message += `- *Nombre:* ${name}\n`;
+      if (city) message += `- *Ubicación:* ${city}\n`;
+      message += `\nQuedo a la espera para coordinar el pago y envío. ¡Muchas gracias!`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+      window.open(whatsappUrl, '_blank');
+      closeOrderModal();
+    }
+
+    // INITIAL RENDER
+    renderCatalog();
+  </script>
+</body>
+</html>
