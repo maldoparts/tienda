@@ -37,7 +37,7 @@
       line-height: 1.5;
     }
 
-    /* HEADER MINIMALISTA SIN TEXTO NI MINIATURA */
+    /* HEADER SOLO CON BUSCADOR Y CARRITO (SIN LOGO NI TEXTO ARRIBA) */
     header {
       background-color: #0A0A0A;
       border-bottom: 2px solid var(--primary-red);
@@ -45,9 +45,6 @@
       top: 0;
       z-index: 100;
       padding: 1rem 2rem;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
     }
 
     .header-actions {
@@ -62,7 +59,7 @@
 
     .search-box {
       position: relative;
-      width: 300px;
+      width: 320px;
     }
 
     .search-box input {
@@ -109,23 +106,27 @@
       font-size: 0.8rem;
     }
 
-    /* HERO BANNER EXCLUSIVO CON LOGO GIGANTE */
+    /* BANNER PRINCIPAL: SOLO LA IMAGEN DEL LOGO EN GIGANTE */
     .hero {
       background-color: #000000;
-      padding: 4rem 1rem;
+      padding: 0;
+      width: 100%;
       text-align: center;
       border-bottom: 2px solid var(--primary-red);
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
 
     .hero-logo {
       width: 100%;
-      max-width: 950px;
+      max-width: 1200px;
       height: auto;
-      max-height: 480px;
+      max-height: 500px;
       object-fit: contain;
+      display: block;
+      margin: 0 auto;
     }
 
     /* CATEGORIES NAV */
@@ -182,7 +183,7 @@
       gap: 1.5rem;
     }
 
-    /* PRODUCT CARD & 1280x1280 IMAGES */
+    /* PRODUCT CARD & IMAGES 1280x1280 */
     .product-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -547,11 +548,8 @@
         flex: 1;
         width: auto;
       }
-      .hero {
-        padding: 2rem 1rem;
-      }
       .hero-logo {
-        max-height: 250px;
+        max-height: 280px;
       }
       .cart-float-bar {
         width: 90%;
@@ -564,7 +562,7 @@
 </head>
 <body>
 
-  <!-- HEADER SIN TEXTO NI MINIATURA -->
+  <!-- HEADER CON BUSCADOR Y CARRITO -->
   <header>
     <div class="header-actions">
       <div class="search-box">
@@ -578,7 +576,7 @@
     </div>
   </header>
 
-  <!-- HERO BANNER SOLO LOGO GIGANTE -->
+  <!-- BANNER EXCLUSIVO CON LOGO EN ANCHO COMPLETO -->
   <section class="hero">
     <img src="foto.png" alt="MaldoParts Banner" class="hero-logo">
   </section>
