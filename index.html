@@ -37,7 +37,7 @@
       line-height: 1.5;
     }
 
-    /* HEADER */
+    /* HEADER MINIMALISTA SIN TEXTO NI MINIATURA */
     header {
       background-color: #0A0A0A;
       border-bottom: 2px solid var(--primary-red);
@@ -46,43 +46,23 @@
       z-index: 100;
       padding: 1rem 2rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
-    }
-
-    .brand-container {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .brand-logo {
-      height: 50px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .brand-name {
-      font-family: var(--font-title);
-      font-size: 2.2rem;
-      letter-spacing: 2px;
-      color: var(--text-white);
-      text-transform: uppercase;
-    }
-
-    .brand-name span {
-      color: var(--primary-red);
     }
 
     .header-actions {
       display: flex;
       align-items: center;
       gap: 1rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      justify-content: space-between;
     }
 
     .search-box {
       position: relative;
-      width: 250px;
+      width: 300px;
     }
 
     .search-box input {
@@ -129,24 +109,23 @@
       font-size: 0.8rem;
     }
 
-    /* HERO BANNER CON LOGO GIGANTE EN LUGAR DE TEXTO */
+    /* HERO BANNER EXCLUSIVO CON LOGO GIGANTE */
     .hero {
-      background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)),
-                  url('https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1350&q=80') center/cover;
-      padding: 3.5rem 2rem;
+      background-color: #000000;
+      padding: 4rem 1rem;
       text-align: center;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 2px solid var(--primary-red);
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .hero-logo {
-      max-width: 450px;
-      width: 80%;
+      width: 100%;
+      max-width: 950px;
       height: auto;
+      max-height: 480px;
       object-fit: contain;
-      filter: drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.8));
     }
 
     /* CATEGORIES NAV */
@@ -562,18 +541,17 @@
 
     @media (max-width: 768px) {
       header {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .header-actions {
-        width: 100%;
-        justify-content: space-between;
+        padding: 0.8rem 1rem;
       }
       .search-box {
         flex: 1;
+        width: auto;
+      }
+      .hero {
+        padding: 2rem 1rem;
       }
       .hero-logo {
-        max-width: 300px;
+        max-height: 250px;
       }
       .cart-float-bar {
         width: 90%;
@@ -586,12 +564,8 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER SIN TEXTO NI MINIATURA -->
   <header>
-    <div class="brand-container">
-      <img src="foto.png" alt="MaldoParts Logo" class="brand-logo" onerror="this.style.display='none'">
-      <div class="brand-name">MALDO<span>PARTS</span></div>
-    </div>
     <div class="header-actions">
       <div class="search-box">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -604,9 +578,9 @@
     </div>
   </header>
 
-  <!-- HERO BANNER CON LOGO GIGANTE -->
+  <!-- HERO BANNER SOLO LOGO GIGANTE -->
   <section class="hero">
-    <img src="foto.png" alt="MaldoParts Banner Logo" class="hero-logo">
+    <img src="foto.png" alt="MaldoParts Banner" class="hero-logo">
   </section>
 
   <!-- NAVEGACIÓN DE CATÁLOGOS -->
@@ -638,9 +612,7 @@
       <h2>MI CARRITO</h2>
       <button class="close-cart-btn" onclick="closeCartSidebar()">&times;</button>
     </div>
-    <div class="cart-sidebar-items" id="cartSidebarItems">
-      <!-- Los ítems del carrito se generan dinámicamente aquí -->
-    </div>
+    <div class="cart-sidebar-items" id="cartSidebarItems"></div>
     <div class="cart-sidebar-footer">
       <div class="cart-sidebar-total">
         <span>TOTAL:</span>
