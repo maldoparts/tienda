@@ -129,27 +129,24 @@
       font-size: 0.8rem;
     }
 
-    /* HERO BANNER */
+    /* HERO BANNER CON LOGO GIGANTE EN LUGAR DE TEXTO */
     .hero {
       background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)),
                   url('https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1350&q=80') center/cover;
-      padding: 3rem 2rem;
+      padding: 3.5rem 2rem;
       text-align: center;
       border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .hero h1 {
-      font-family: var(--font-title);
-      font-size: 3.5rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .hero p {
-      color: var(--text-gray);
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0.5rem auto 0;
+    .hero-logo {
+      max-width: 450px;
+      width: 80%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.8));
     }
 
     /* CATEGORIES NAV */
@@ -575,8 +572,8 @@
       .search-box {
         flex: 1;
       }
-      .hero h1 {
-        font-size: 2.5rem;
+      .hero-logo {
+        max-width: 300px;
       }
       .cart-float-bar {
         width: 90%;
@@ -607,10 +604,9 @@
     </div>
   </header>
 
-  <!-- HERO BANNER -->
+  <!-- HERO BANNER CON LOGO GIGANTE -->
   <section class="hero">
-    <h1>AUTOPARTES DE COMPETICIÓN</h1>
-    <p>Seleccioná tus componentes, armá tu pedido personalizado y recibilo directamente en tu WhatsApp.</p>
+    <img src="foto.png" alt="MaldoParts Banner Logo" class="hero-logo">
   </section>
 
   <!-- NAVEGACIÓN DE CATÁLOGOS -->
@@ -823,7 +819,7 @@
       });
     }
 
-    // SI LA IMAGEN NO EXISTE O TODAVÍA NO SE SUBIÓ, SE REMUEVE EL CONTENEDOR SIN MOSTRAR MARCOS NI TEXTOS
+    // SI LA IMAGEN NO EXISTE EN GITHUB, SE REMUEVE EL MARCO
     function handleImageError(imgElement) {
       const container = imgElement.parentElement;
       if (container) {
@@ -862,7 +858,6 @@
           const subtotal = prod.price * qty;
           totalPrice += subtotal;
 
-          // Renderizar ítem en el sidebar del carrito
           const cartItem = document.createElement('div');
           cartItem.className = 'cart-item';
           cartItem.innerHTML = `
@@ -881,7 +876,6 @@
         }
       }
 
-      // Badges y totales
       document.getElementById('headerCartCount').innerText = totalItems;
       document.getElementById('cartCount').innerText = `${totalItems} producto${totalItems > 1 ? 's' : ''}`;
       document.getElementById('cartTotal').innerText = `$${totalPrice.toLocaleString('es-AR')}`;
