@@ -37,7 +37,7 @@
       line-height: 1.5;
     }
 
-    /* HEADER SOLO CON BUSCADOR Y CARRITO (SIN LOGO NI TEXTO ARRIBA) */
+    /* HEADER SOLO CON BUSCADOR Y CARRITO */
     header {
       background-color: #0A0A0A;
       border-bottom: 2px solid var(--primary-red);
@@ -183,7 +183,7 @@
       gap: 1.5rem;
     }
 
-    /* PRODUCT CARD & IMAGES 1280x1280 */
+    /* PRODUCT CARD & IMAGES */
     .product-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -586,6 +586,7 @@
     <button class="cat-btn active" onclick="filterCategory('all', event)"><i class="fa-solid fa-border-all"></i> Todos</button>
     <button class="cat-btn" onclick="filterCategory('volantes', event)"><i class="fa-solid fa-circle-notch"></i> Volantes</button>
     <button class="cat-btn" onclick="filterCategory('masas', event)"><i class="fa-solid fa-gear"></i> Masas</button>
+    <button class="cat-btn" onclick="filterCategory('amortiguadores', event)"><i class="fa-solid fa-car-side"></i> Amortiguadores de Capot</button>
     <button class="cat-btn" onclick="filterCategory('otros', event)"><i class="fa-solid fa-wrench"></i> Otros</button>
   </nav>
 
@@ -655,7 +656,7 @@
   <script>
     const WHATSAPP_NUMBER = "5491164016408";
 
-    // CATALOGO COMPLETO CON NOMBRES DE IMAGEN PARA CADA UNO
+    // CATALOGO COMPLETO CON NOMBRES DE IMAGEN
     const productsData = [
       // VOLANTES
       { id: 1, name: "Volante Stick Perforado 35cm", price: 50000, category: "volantes", image: "volante1.png" },
@@ -690,6 +691,76 @@
       { id: 28, name: "Masa Renault Megane/Kangoo + kit tornillos", price: 60000, category: "masas", image: "masa9.png" },
       { id: 29, name: "Masa Corsa 2 / Astra + kit de tornillos", price: 60000, category: "masas", image: "masa10.png" },
       { id: 30, name: "Masa Fiat Palio Estira Fina + kit tornillos", price: 65000, category: "masas", image: "masa11.png" },
+
+      // AMORTIGUADORES DE CAPOT
+      { id: 101, name: "Amortiguadores para capot Toyota Corolla G11, 2014 a 2019", price: 80500, category: "amortiguadores", image: "amort1.png" },
+      { id: 102, name: "Amortiguadores para capot Ford Ranger 2023 en adelante", price: 145475, category: "amortiguadores", image: "amort2.png" },
+      { id: 103, name: "Amortiguadores para capot Volkswagen T-Cross", price: 128800, category: "amortiguadores", image: "amort3.png" },
+      { id: 104, name: "Amortiguadores para capot Volkswagen Golf - Jetta MK3", price: 80500, category: "amortiguadores", image: "amort4.png" },
+      { id: 105, name: "Amortiguadores para capot Toyota Corolla Cross", price: 80500, category: "amortiguadores", image: "amort5.png" },
+      { id: 106, name: "Amortiguadores para capot Ford Kuga MK2", price: 108100, category: "amortiguadores", image: "amort6.png" },
+      { id: 107, name: "Amortiguadores para capot Renault Logan 2004 a 2015", price: 63250, category: "amortiguadores", image: "amort7.png" },
+      { id: 108, name: "Amortiguadores para capot Volkswagen Nivus", price: 128800, category: "amortiguadores", image: "amort8.png" },
+      { id: 109, name: "Amortiguadores para capot Honda Civic G7 2000 a 2005", price: 80500, category: "amortiguadores", image: "amort9.png" },
+      { id: 110, name: "Amortiguadores para capot Volkswagen Polo 1995 a 2008", price: 80500, category: "amortiguadores", image: "amort10.png" },
+      { id: 111, name: "Amortiguadores para capot Chevrolet Corsa y Classic", price: 71300, category: "amortiguadores", image: "amort11.png" },
+      { id: 112, name: "Amortiguadores para capot Ford Fiesta MK6 2010 a 2019", price: 71300, category: "amortiguadores", image: "amort12.png" },
+      { id: 113, name: "Amortiguadores para capot Nissan Sentra N17 2020 en adelante", price: 80500, category: "amortiguadores", image: "amort13.png" },
+      { id: 114, name: "Amortiguadores para capot Suzuki Fun", price: 71300, category: "amortiguadores", image: "amort14.png" },
+      { id: 115, name: "Amortiguadores para capot Fiat Bravo", price: 80500, category: "amortiguadores", image: "amort15.png" },
+      { id: 116, name: "Amortiguadores para capot Fiat Toro", price: 128800, category: "amortiguadores", image: "amort16.png" },
+      { id: 117, name: "Amortiguadores para capot Chevrolet Astra", price: 80500, category: "amortiguadores", image: "amort17.png" },
+      { id: 118, name: "Amortiguadores para capot Fiat Palio Siena Strada Fire", price: 80500, category: "amortiguadores", image: "amort18.png" },
+      { id: 119, name: "Amortiguadores para capot Ford Orion / Escort MK5-MK6", price: 80500, category: "amortiguadores", image: "amort19.png" },
+      { id: 120, name: "Amortiguadores para capot Peugeot 208 2019 en adelante", price: 87400, category: "amortiguadores", image: "amort20.png" },
+      { id: 121, name: "Amortiguadores para capot Volkswagen Taos", price: 128800, category: "amortiguadores", image: "amort21.png" },
+      { id: 122, name: "Amortiguadores para capot Jeep Renegade", price: 128800, category: "amortiguadores", image: "amort22.png" },
+      { id: 123, name: "Amortiguadores para capot Fiat Palio Siena Strada G1", price: 80500, category: "amortiguadores", image: "amort23.png" },
+      { id: 124, name: "Amortiguadores para capot Chevrolet Aveo", price: 71300, category: "amortiguadores", image: "amort24.png" },
+      { id: 125, name: "Amortiguadores para capot Peugeot 206", price: 63250, category: "amortiguadores", image: "amort25.png" },
+      { id: 126, name: "Amortiguadores para capot Volkswagen Vento MK6", price: 80500, category: "amortiguadores", image: "amort26.png" },
+      { id: 127, name: "Amortiguadores para capot Peugeot 307 Fase 1", price: 80500, category: "amortiguadores", image: "amort27.png" },
+      { id: 128, name: "Amortiguadores para capot Peugeot 308S T9 Allure plus, GT y GTI", price: 87400, category: "amortiguadores", image: "amort28.png" },
+      { id: 129, name: "Amortiguadores para capot Volkswagen Up", price: 80500, category: "amortiguadores", image: "amort29.png" },
+      { id: 130, name: "Amortiguadores para capot Fiat Argo", price: 80500, category: "amortiguadores", image: "amort30.png" },
+      { id: 131, name: "Amortiguadores para capot Volkswagen Suran", price: 80500, category: "amortiguadores", image: "amort31.png" },
+      { id: 132, name: "Amortiguadores para capot Chevrolet Celta", price: 71300, category: "amortiguadores", image: "amort32.png" },
+      { id: 133, name: "Amortiguadores para capot Ford Focus III y KD", price: 87400, category: "amortiguadores", image: "amort33.png" },
+      { id: 134, name: "Amortiguadores para capot Volkswagen G4 Gol Saveiro Country", price: 71300, category: "amortiguadores", image: "amort34.png" },
+      { id: 135, name: "Amortiguadores para capot Volkswagen G6 G7 G8 Gol Saveiro Voyage", price: 87400, category: "amortiguadores", image: "amort35.png" },
+      { id: 136, name: "Amortiguadores para capot Volkswagen G2 (AB9) Gol Saveiro Country", price: 71300, category: "amortiguadores", image: "amort36.png" },
+      { id: 137, name: "Amortiguadores para capot Volkswagen G3 Gol Saveiro Country", price: 71300, category: "amortiguadores", image: "amort37.png" },
+      { id: 138, name: "Amortiguadores para capot Ford Ranger Raptor > 2023", price: 145475, category: "amortiguadores", image: "amort38.png" },
+      { id: 139, name: "Amortiguadores para capot Toyota Hilux G7 (2005-2015)", price: 145475, category: "amortiguadores", image: "amort39.png" },
+      { id: 140, name: "Amortiguadores para capot Ford Ka G3 2014 a 2021", price: 80500, category: "amortiguadores", image: "amort40.png" },
+      { id: 141, name: "Amortiguadores para capot Peugeot 308/408", price: 79120, category: "amortiguadores", image: "amort41.png" },
+      { id: 142, name: "Amortiguadores para capot Toyota Corolla G9 2002 a 2008", price: 87400, category: "amortiguadores", image: "amort42.png" },
+      { id: 143, name: "Amortiguadores para capot Renault 9/11", price: 80500, category: "amortiguadores", image: "amort43.png" },
+      { id: 144, name: "Amortiguadores para capot Renault Sandero", price: 80500, category: "amortiguadores", image: "amort44.png" },
+      { id: 145, name: "Amortiguadores para capot Fiat Punto 2007 a 2012", price: 80500, category: "amortiguadores", image: "amort45.png" },
+      { id: 146, name: "Amortiguadores para capot Ford Focus II", price: 80500, category: "amortiguadores", image: "amort46.png" },
+      { id: 147, name: "Amortiguadores para capot Fiat Punto 2013 a 2017", price: 80500, category: "amortiguadores", image: "amort47.png" },
+      { id: 148, name: "Amortiguadores para capot Toyota Corolla G12/13 2020 en adelante", price: 80500, category: "amortiguadores", image: "amort48.png" },
+      { id: 149, name: "Amortiguadores para capot Peugeot 207", price: 63250, category: "amortiguadores", image: "amort49.png" },
+      { id: 150, name: "Amortiguadores para capot Jeep Compass Commander", price: 145475, category: "amortiguadores", image: "amort50.png" },
+      { id: 151, name: "Amortiguadores para capot Fiat Uno Way", price: 80500, category: "amortiguadores", image: "amort51.png" },
+      { id: 152, name: "Amortiguadores para capot Renault Megane 1 Fase 2", price: 80500, category: "amortiguadores", image: "amort52.png" },
+      { id: 153, name: "Amortiguadores para capot Ford Mondeo MK5 2015 a 2021", price: 87400, category: "amortiguadores", image: "amort53.png" },
+      { id: 154, name: "Amortiguadores para capot Toyota Corolla G10 2009 a 2013", price: 80500, category: "amortiguadores", image: "amort54.png" },
+      { id: 155, name: "Amortiguadores para capot Volkswagen Polo New GTS Track", price: 87400, category: "amortiguadores", image: "amort55.png" },
+      { id: 156, name: "Amortiguadores para capot Honda Accord 1994 a 1998", price: 80500, category: "amortiguadores", image: "amort56.png" },
+      { id: 157, name: "Amortiguadores para capot Ford Fiesta Max One Ambient", price: 71300, category: "amortiguadores", image: "amort57.png" },
+      { id: 158, name: "Amortiguadores para capot Volkswagen G1 Gol Saveiro Senda", price: 71300, category: "amortiguadores", image: "amort58.png" },
+      { id: 159, name: "Amortiguadores para capot Renault Fuego", price: 80500, category: "amortiguadores", image: "amort59.png" },
+      { id: 160, name: "Amortiguadores para capot Volkswagen Scirocco", price: 108100, category: "amortiguadores", image: "amort60.png" },
+      { id: 161, name: "Amortiguadores para capot Renault Clio 2 Fase 2 - Mio - Symbol", price: 71300, category: "amortiguadores", image: "amort61.png" },
+      { id: 162, name: "Amortiguadores para capot Volkswagen Fox", price: 80500, category: "amortiguadores", image: "amort62.png" },
+      { id: 163, name: "Amortiguadores para capot Volkswagen Amarok", price: 145475, category: "amortiguadores", image: "amort63.png" },
+      { id: 164, name: "Amortiguadores para capot Renault Fluence", price: 80500, category: "amortiguadores", image: "amort64.png" },
+      { id: 165, name: "Amortiguadores para capot Fiat Uno - Duna - Fiorino R2", price: 63250, category: "amortiguadores", image: "amort65.png" },
+      { id: 166, name: "Amortiguadores para capot Volkswagen G5 Gol Saveiro Voyage", price: 80500, category: "amortiguadores", image: "amort66.png" },
+      { id: 167, name: "Amortiguadores para capot Peugeot 307 Fase 2", price: 63250, category: "amortiguadores", image: "amort67.png" },
+      { id: 168, name: "Amortiguadores para capot Volkswagen Tiguan G1 2007 a 2016", price: 80500, category: "amortiguadores", image: "amort68.png" },
 
       // OTROS
       { id: 31, name: "Adaptador Entrec... 80 mm a 70 mm", price: 22000, category: "otros", image: "otro1.png" },
@@ -733,6 +804,7 @@
       const categories = [
         { id: 'volantes', title: '🏎️ Volantes' },
         { id: 'masas', title: '⚙️ Masas' },
+        { id: 'amortiguadores', title: '🚗 Amortiguadores de Capot' },
         { id: 'otros', title: '🛠️ Otros' }
       ];
 
