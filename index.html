@@ -160,6 +160,14 @@
       border-color: var(--primary-red);
     }
 
+    .custom-icon {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
     /* MAIN CATALOG CONTAINER */
     .catalog-container {
       max-width: 1200px;
@@ -175,6 +183,9 @@
       padding-left: 1rem;
       margin: 2rem 0 1rem;
       text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
     .products-grid {
@@ -584,9 +595,15 @@
   <!-- NAVEGACIÓN DE CATÁLOGOS -->
   <nav class="categories-nav">
     <button class="cat-btn active" onclick="filterCategory('all', event)"><i class="fa-solid fa-border-all"></i> Todos</button>
-    <button class="cat-btn" onclick="filterCategory('volantes', event)"><i class="fa-solid fa-circle-notch"></i> Volantes</button>
+    <button class="cat-btn" onclick="filterCategory('volantes', event)">
+      <svg class="custom-icon" viewBox="0 0 512 512"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 48c114.9 0 208 93.1 208 208 0 49.3-17.2 94.6-46 130.4l-114-114c11-13.8 18-31 18-49.9 0-44.2-35.8-80-80-80s-80 35.8-80 80c0 18.9 7 36.1 18 49.9l-114 114C65.2 350.6 48 305.3 48 256 48 141.1 141.1 48 256 48zm0 160c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48z"/></svg>
+      Volantes
+    </button>
     <button class="cat-btn" onclick="filterCategory('masas', event)"><i class="fa-solid fa-gear"></i> Masas</button>
-    <button class="cat-btn" onclick="filterCategory('amortiguadores', event)"><i class="fa-solid fa-car-side"></i> Amortiguadores de Capot</button>
+    <button class="cat-btn" onclick="filterCategory('amortiguadores', event)">
+      <svg class="custom-icon" viewBox="0 0 24 24"><path d="M12 2C10.9 2 10 2.9 10 4C10 4.8 10.5 5.5 11.2 5.8C9.3 6.4 8 8.1 8 10.2C8 10.8 8.1 11.4 8.4 12C7.3 12.6 6.5 13.8 6.5 15.2C6.5 17.3 8.2 19 10.3 19C10.7 19 11.1 18.9 11.5 18.8V20C11.5 21.1 12.4 22 13.5 22C14.6 22 15.5 21.1 15.5 20V18.8C15.9 18.9 16.3 19 16.7 19C18.8 19 20.5 17.3 20.5 15.2C20.5 13.8 19.7 12.6 18.6 12C18.9 11.4 19 10.8 19 10.2C19 8.1 17.7 6.4 15.8 5.8C16.5 5.5 17 4.8 17 4C17 2.9 16.1 2 15 2C14.3 2 13.7 2.4 13.3 3H13.7C13 2.4 12.4 2 12 2Z"/></svg>
+      Amortiguadores de Capot
+    </button>
     <button class="cat-btn" onclick="filterCategory('otros', event)"><i class="fa-solid fa-wrench"></i> Otros</button>
   </nav>
 
@@ -801,10 +818,13 @@
       const catalogEl = document.getElementById('catalog');
       catalogEl.innerHTML = '';
 
+      const steeringSvg = `<svg class="custom-icon" viewBox="0 0 512 512"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 48c114.9 0 208 93.1 208 208 0 49.3-17.2 94.6-46 130.4l-114-114c11-13.8 18-31 18-49.9 0-44.2-35.8-80-80-80s-80 35.8-80 80c0 18.9 7 36.1 18 49.9l-114 114C65.2 350.6 48 305.3 48 256 48 141.1 141.1 48 256 48zm0 160c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48z"/></svg>`;
+      const springSvg = `<svg class="custom-icon" viewBox="0 0 24 24"><path d="M12 2C10.9 2 10 2.9 10 4C10 4.8 10.5 5.5 11.2 5.8C9.3 6.4 8 8.1 8 10.2C8 10.8 8.1 11.4 8.4 12C7.3 12.6 6.5 13.8 6.5 15.2C6.5 17.3 8.2 19 10.3 19C10.7 19 11.1 18.9 11.5 18.8V20C11.5 21.1 12.4 22 13.5 22C14.6 22 15.5 21.1 15.5 20V18.8C15.9 18.9 16.3 19 16.7 19C18.8 19 20.5 17.3 20.5 15.2C20.5 13.8 19.7 12.6 18.6 12C18.9 11.4 19 10.8 19 10.2C19 8.1 17.7 6.4 15.8 5.8C16.5 5.5 17 4.8 17 4C17 2.9 16.1 2 15 2C14.3 2 13.7 2.4 13.3 3H13.7C13 2.4 12.4 2 12 2Z"/></svg>`;
+
       const categories = [
-        { id: 'volantes', title: '🏎️ Volantes' },
+        { id: 'volantes', title: `${steeringSvg} Volantes` },
         { id: 'masas', title: '⚙️ Masas' },
-        { id: 'amortiguadores', title: '🚗 Amortiguadores de Capot' },
+        { id: 'amortiguadores', title: `${springSvg} Amortiguadores de Capot` },
         { id: 'otros', title: '🛠️ Otros' }
       ];
 
@@ -816,7 +836,7 @@
         if (filteredProds.length > 0) {
           const catHeader = document.createElement('h2');
           catHeader.className = 'category-title';
-          catHeader.innerText = cat.title;
+          catHeader.innerHTML = cat.title;
           catalogEl.appendChild(catHeader);
 
           const grid = document.createElement('div');
