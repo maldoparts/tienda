@@ -156,8 +156,11 @@
       font-size: 0.95rem;
     }
 
-    .cat-btn i {
-      font-size: 1.1rem;
+    .cat-icon {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      vertical-align: middle;
     }
 
     .cat-btn.active, .cat-btn:hover {
@@ -185,9 +188,11 @@
       gap: 0.8rem;
     }
 
-    .category-title i {
-      font-size: 1.8rem;
-      color: var(--primary-red);
+    .title-icon {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      vertical-align: middle;
     }
 
     .products-grid {
@@ -472,7 +477,7 @@
     /* MODAL ORDER FORM */
     .modal-backdrop {
       display: none;
-      position: fixed;
+      position fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.85);
       z-index: 300;
@@ -594,13 +599,21 @@
     <img src="foto.png" alt="MaldoParts Banner" class="hero-logo">
   </section>
 
-  <!-- NAVEGACIÓN DE CATÁLOGOS -->
+  <!-- NAVEGACIÓN DE CATÁLOGOS CON IMÁGENES PNG -->
   <nav class="categories-nav">
     <button class="cat-btn active" onclick="filterCategory('all', event)"><i class="fa-solid fa-border-all"></i> Todos</button>
-    <button class="cat-btn" onclick="filterCategory('volantes', event)"><i class="fa-solid fa-circle-dot"></i> Volantes</button>
-    <button class="cat-btn" onclick="filterCategory('masas', event)"><i class="fa-solid fa-gear"></i> Masas</button>
-    <button class="cat-btn" onclick="filterCategory('amortiguadores', event)"><i class="fa-solid fa-arrows-up-down"></i> Amortiguadores de Capot</button>
-    <button class="cat-btn" onclick="filterCategory('otros', event)"><i class="fa-solid fa-wrench"></i> Otros</button>
+    <button class="cat-btn" onclick="filterCategory('volantes', event)">
+      <img src="icon-volante.png" alt="Volantes" class="cat-icon" onerror="this.style.display='none'"> Volantes
+    </button>
+    <button class="cat-btn" onclick="filterCategory('masas', event)">
+      <img src="icon-masa.png" alt="Masas" class="cat-icon" onerror="this.style.display='none'"> Masas
+    </button>
+    <button class="cat-btn" onclick="filterCategory('amortiguadores', event)">
+      <img src="icon-amortiguador.png" alt="Amortiguadores" class="cat-icon" onerror="this.style.display='none'"> Amortiguadores de Capot
+    </button>
+    <button class="cat-btn" onclick="filterCategory('otros', event)">
+      <img src="icon-otros.png" alt="Otros" class="cat-icon" onerror="this.style.display='none'"> Otros
+    </button>
   </nav>
 
   <!-- CONTENEDOR PRINCIPAL -->
@@ -617,7 +630,7 @@
     </button>
   </div>
 
-  <!-- PANEL LATERAL DEL CARRITO (DESPLEGABLE) -->
+  <!-- PANEL LATERAL DEL CARRITO (SIDEBAR) -->
   <div class="cart-sidebar-backdrop" id="cartBackdrop" onclick="closeCartSidebar()"></div>
   <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-sidebar-header">
@@ -815,10 +828,10 @@
       catalogEl.innerHTML = '';
 
       const categories = [
-        { id: 'volantes', title: '<i class="fa-solid fa-circle-dot"></i> Volantes' },
-        { id: 'masas', title: '<i class="fa-solid fa-gear"></i> Masas' },
-        { id: 'amortiguadores', title: '<i class="fa-solid fa-arrows-up-down"></i> Amortiguadores de Capot' },
-        { id: 'otros', title: '<i class="fa-solid fa-wrench"></i> Otros' }
+        { id: 'volantes', title: '<img src="icon-volante.png" class="title-icon" onerror="this.style.display=\'none\'"> Volantes' },
+        { id: 'masas', title: '<img src="icon-masa.png" class="title-icon" onerror="this.style.display=\'none\'"> Masas' },
+        { id: 'amortiguadores', title: '<img src="icon-amortiguador.png" class="title-icon" onerror="this.style.display=\'none\'"> Amortiguadores de Capot' },
+        { id: 'otros', title: '<img src="icon-otros.png" class="title-icon" onerror="this.style.display=\'none\'"> Otros' }
       ];
 
       categories.forEach(cat => {
