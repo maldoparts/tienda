@@ -310,6 +310,29 @@
       background: var(--primary-red-hover);
     }
 
+    /* BOTÓN DIRECTO DE CONSULTA A WHATSAPP */
+    .btn-consult-wa {
+      width: 100%;
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-consult-wa:hover {
+      background: #1ebc57;
+    }
+
     /* FLOATING CART BAR */
     .cart-float-bar {
       position: fixed;
@@ -731,6 +754,7 @@
       { id: 203, name: "Kit 2 Lamparas Led Macroled Pro Compact H7 55w 12v 6500k", price: 78800, category: "luces", image: "luz3.png" },
       { id: 204, name: "Pack x2 Led H4 Lamparas Auto 6000k Alta Potencia Macroled", price: 43300, category: "luces", image: "luz4.png" },
       { id: 205, name: "Kit Led H7 6000k Macro Led Alta Potencia", price: 45300, category: "luces", image: "luz5.png" },
+      { id: 206, name: "Consultar por otros modelos de lámparas LED", isConsult: true, category: "luces", image: "luz_consulta.png" },
 
       // AMORTIGUADORES DE CAPOT
       { id: 101, name: "Amortiguadores para capot Toyota Corolla G11, 2014 a 2019", price: 80500, category: "amortiguadores", image: "amort1.png" },
@@ -877,23 +901,36 @@
               `;
             }
 
-            card.innerHTML = `
-              ${imageHtml}
-              <div class="product-info">
-                <h3>${prod.name}</h3>
-                <div class="product-price">$${prod.price.toLocaleString('es-AR')}</div>
-              </div>
-              <div class="card-actions">
-                <div class="quantity-controls">
-                  <button onclick="changeQty(${prod.id}, -1)">-</button>
-                  <span id="qty-${prod.id}">${qty}</span>
-                  <button onclick="changeQty(${prod.id}, 1)">+</button>
+            if (prod.isConsult) {
+              const directWaUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('¡Hola MaldoParts! 👋 Quisiera consultar por otros modelos de lámparas LED.')}`;
+              card.innerHTML = `
+                ${imageHtml}
+                <div class="product-info">
+                  <h3>${prod.name}</h3>
                 </div>
-                <button class="btn-add" onclick="changeQty(${prod.id}, 1)">
-                  ${qty > 0 ? 'Añadido' : 'Agregar'}
-                </button>
-              </div>
-            `;
+                <a href="${directWaUrl}" target="_blank" class="btn-consult-wa">
+                  <i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp
+                </a>
+              `;
+            } else {
+              card.innerHTML = `
+                ${imageHtml}
+                <div class="product-info">
+                  <h3>${prod.name}</h3>
+                  <div class="product-price">$${prod.price.toLocaleString('es-AR')}</div>
+                </div>
+                <div class="card-actions">
+                  <div class="quantity-controls">
+                    <button onclick="changeQty(${prod.id}, -1)">-</button>
+                    <span id="qty-${prod.id}">${qty}</span>
+                    <button onclick="changeQty(${prod.id}, 1)">+</button>
+                  </div>
+                  <button class="btn-add" onclick="changeQty(${prod.id}, 1)">
+                    ${qty > 0 ? 'Añadido' : 'Agregar'}
+                  </button>
+                </div>
+              `;
+            }
             grid.appendChild(card);
           });
 
