@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>MaldoParts — Autopartes y Competición</title>
   <!-- Google Fonts & Font Awesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +35,7 @@
       color: var(--text-white);
       font-family: var(--font-body);
       line-height: 1.5;
+      touch-action: manipulation;
     }
 
     /* HEADER SOLO CON BUSCADOR Y CARRITO */
@@ -70,6 +71,7 @@
       border-radius: 20px;
       color: white;
       outline: none;
+      font-size: 16px;
     }
 
     .search-box input:focus {
@@ -477,7 +479,7 @@
     /* MODAL ORDER FORM */
     .modal-backdrop {
       display: none;
-      position fixed;
+      position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.85);
       z-index: 300;
@@ -518,6 +520,8 @@
       border: 1px solid var(--border-color);
       border-radius: 6px;
       color: white;
+      font-size: 16px;
+      font-family: var(--font-body);
     }
 
     .modal-actions {
@@ -607,6 +611,9 @@
     </button>
     <button class="cat-btn" onclick="filterCategory('masas', event)">
       <img src="icon-masa.png" alt="Masas" class="cat-icon" onerror="this.style.display='none'"> Masas
+    </button>
+    <button class="cat-btn" onclick="filterCategory('luces', event)">
+      <img src="icon-luces.png" alt="Luces" class="cat-icon" onerror="this.style.display='none'"> Luces
     </button>
     <button class="cat-btn" onclick="filterCategory('amortiguadores', event)">
       <img src="icon-amortiguador.png" alt="Amortiguadores" class="cat-icon" onerror="this.style.display='none'"> Amortiguadores de Capot
@@ -717,6 +724,13 @@
       { id: 28, name: "Masa Renault Megane/Kangoo + kit tornillos", price: 60000, category: "masas", image: "masa9.png" },
       { id: 29, name: "Masa Corsa 2 / Astra + kit de tornillos", price: 60000, category: "masas", image: "masa10.png" },
       { id: 30, name: "Masa Fiat Palio Estira Fina + kit tornillos", price: 65000, category: "masas", image: "masa11.png" },
+
+      // LUCES
+      { id: 201, name: "Kit Lamparas H4 Led Alta Baja 6000k Blanco Frio Pulg & Play", price: 43299, category: "luces", image: "luz1.png" },
+      { id: 202, name: "Pack x2 Led H7 65W Lamparas Auto 6500K Pro Line Macroled", price: 135494, category: "luces", image: "luz2.png" },
+      { id: 203, name: "Kit 2 Lamparas Led Macroled Pro Compact H7 55w 12v 6500k", price: 78800, category: "luces", image: "luz3.png" },
+      { id: 204, name: "Pack x2 Led H4 Lamparas Auto 6000k Alta Potencia Macroled", price: 43300, category: "luces", image: "luz4.png" },
+      { id: 205, name: "Kit Led H7 6000k Macro Led Alta Potencia", price: 45300, category: "luces", image: "luz5.png" },
 
       // AMORTIGUADORES DE CAPOT
       { id: 101, name: "Amortiguadores para capot Toyota Corolla G11, 2014 a 2019", price: 80500, category: "amortiguadores", image: "amort1.png" },
@@ -830,6 +844,7 @@
       const categories = [
         { id: 'volantes', title: '<img src="icon-volante.png" class="title-icon" onerror="this.style.display=\'none\'"> Volantes' },
         { id: 'masas', title: '<img src="icon-masa.png" class="title-icon" onerror="this.style.display=\'none\'"> Masas' },
+        { id: 'luces', title: '<img src="icon-luces.png" class="title-icon" onerror="this.style.display=\'none\'"> Luces' },
         { id: 'amortiguadores', title: '<img src="icon-amortiguador.png" class="title-icon" onerror="this.style.display=\'none\'"> Amortiguadores de Capot' },
         { id: 'otros', title: '<img src="icon-otros.png" class="title-icon" onerror="this.style.display=\'none\'"> Otros' }
       ];
