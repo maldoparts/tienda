@@ -668,12 +668,9 @@
     <img src="foto.png" alt="MaldoParts Banner" class="hero-logo">
   </section>
 
-  <!-- NAVEGACIÓN DE CATÁLOGOS CON IMÁGENES PNG -->
+  <!-- NAVEGACIÓN DE CATÁLOGOS REORDENADA -->
   <nav class="categories-nav">
     <button class="cat-btn active" onclick="filterCategory('all', event)"><i class="fa-solid fa-border-all"></i> Todos</button>
-    <button class="cat-btn" onclick="filterCategory('frenos', event)">
-      <img src="icon-frenos.png" alt="Frenos" class="cat-icon" onerror="this.style.display='none'"> Frenos
-    </button>
     <button class="cat-btn" onclick="filterCategory('volantes', event)">
       <img src="icon-volante.png" alt="Volantes" class="cat-icon" onerror="this.style.display='none'"> Volantes
     </button>
@@ -685,6 +682,9 @@
     </button>
     <button class="cat-btn" onclick="filterCategory('amortiguadores', event)">
       <img src="icon-amortiguador.png" alt="Amortiguadores" class="cat-icon" onerror="this.style.display='none'"> Amortiguadores de Capot
+    </button>
+    <button class="cat-btn" onclick="filterCategory('frenos', event)">
+      <img src="icon-frenos.png" alt="Frenos" class="cat-icon" onerror="this.style.display='none'"> Frenos
     </button>
     <button class="cat-btn" onclick="filterCategory('otros', event)">
       <img src="icon-otros.png" alt="Otros" class="cat-icon" onerror="this.style.display='none'"> Otros
@@ -759,32 +759,6 @@
 
     // CATALOGO COMPLETO CON NOMBRES DE IMAGEN
     const productsData = [
-      // FRENOS
-      { 
-        id: 301, 
-        name: "Discos Delanteros (Juego de 2)", 
-        carModel: "FIAT UNO TURBO IE",
-        category: "frenos", 
-        image: "frenos-delanteros.png",
-        specs: "Ø 257 mm | Espesor: 20 mm | Altura: 40,5 mm | Centro: 59 mm | 4+2 Agujeros | Tipo: Ventilado",
-        options: [
-          { name: "Ranurados y Perforados Coated PREMIUM", price: 143669 },
-          { name: "Lisos OEM", price: 100496 }
-        ]
-      },
-      { 
-        id: 302, 
-        name: "Discos Traseros (Juego de 2)", 
-        carModel: "FIAT UNO TURBO IE",
-        category: "frenos", 
-        image: "frenos-traseros.png",
-        specs: "Ø 240 mm | Espesor: 11 mm | Altura: 40 mm | Centro: 59 mm | 4+2 Agujeros | Tipo: Sólido",
-        options: [
-          { name: "Ranurados y Perforados Coated PREMIUM", price: 111756 },
-          { name: "Lisos OEM", price: 95505 }
-        ]
-      },
-
       // VOLANTES
       { id: 1, name: "Volante Stick Perforado 35cm", price: 50000, category: "volantes", image: "volante1.png" },
       { id: 2, name: "Volante Stick Gamuzado 35cm", price: 64000, category: "volantes", image: "volante2.png" },
@@ -897,6 +871,32 @@
       { id: 167, name: "Amortiguadores para capot Peugeot 307 Fase 2", price: 63250, category: "amortiguadores", image: "amort67.png" },
       { id: 168, name: "Amortiguadores para capot Volkswagen Tiguan G1 2007 a 2016", price: 80500, category: "amortiguadores", image: "amort68.png" },
 
+      // FRENOS
+      { 
+        id: 301, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "FIAT UNO TURBO IE",
+        category: "frenos", 
+        image: "frenos-delanteros.png",
+        specs: "Ø 257 mm | Espesor: 20 mm | Altura: 40,5 mm | Centro: 59 mm | 4+2 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 143669 },
+          { name: "Lisos OEM", price: 100496 }
+        ]
+      },
+      { 
+        id: 302, 
+        name: "Discos Traseros (Juego de 2)", 
+        carModel: "FIAT UNO TURBO IE",
+        category: "frenos", 
+        image: "frenos-traseros.png",
+        specs: "Ø 240 mm | Espesor: 11 mm | Altura: 40 mm | Centro: 59 mm | 4+2 Agujeros | Tipo: Sólido",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 111756 },
+          { name: "Lisos OEM", price: 95505 }
+        ]
+      },
+
       // OTROS
       { id: 31, name: "Adaptador Entrec... 80 mm a 70 mm", price: 22000, category: "otros", image: "otro1.png" },
       { id: 32, name: "Kit 6 tornillos + 6 arandelas para volante", price: 19000, category: "otros", image: "otro2.png" },
@@ -938,11 +938,11 @@
       catalogEl.innerHTML = '';
 
       const categories = [
-        { id: 'frenos', title: '<img src="icon-frenos.png" class="title-icon" onerror="this.style.display=\'none\'"> Frenos' },
         { id: 'volantes', title: '<img src="icon-volante.png" class="title-icon" onerror="this.style.display=\'none\'"> Volantes' },
         { id: 'masas', title: '<img src="icon-masa.png" class="title-icon" onerror="this.style.display=\'none\'"> Masas' },
         { id: 'luces', title: '<img src="icon-luces.png" class="title-icon" onerror="this.style.display=\'none\'"> Luces' },
         { id: 'amortiguadores', title: '<img src="icon-amortiguador.png" class="title-icon" onerror="this.style.display=\'none\'"> Amortiguadores de Capot' },
+        { id: 'frenos', title: '<img src="icon-frenos.png" class="title-icon" onerror="this.style.display=\'none\'"> Frenos' },
         { id: 'otros', title: '<img src="icon-otros.png" class="title-icon" onerror="this.style.display=\'none\'"> Otros' }
       ];
 
