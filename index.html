@@ -668,7 +668,7 @@
     <img src="foto.png" alt="MaldoParts Banner" class="hero-logo">
   </section>
 
-  <!-- NAVEGACIÓN DE CATÁLOGOS REORDENADA -->
+  <!-- NAVEGACIÓN DE CATÁLOGOS CON FRENOS ANTEÚLTIMO -->
   <nav class="categories-nav">
     <button class="cat-btn active" onclick="filterCategory('all', event)"><i class="fa-solid fa-border-all"></i> Todos</button>
     <button class="cat-btn" onclick="filterCategory('volantes', event)">
@@ -896,6 +896,118 @@
           { name: "Lisos OEM", price: 95505 }
         ]
       },
+      { 
+        id: 303, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "GOL G1 / FIAT 128 / UNO / DUNA",
+        category: "frenos", 
+        image: "frenos-gol-g1.png",
+        specs: "Ø 239 mm | Espesor: 12 mm | Altura: 35 mm | Centro: 65 mm | 4+1 Agujeros | Tipo: Sólido",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 77040 },
+          { name: "Lisos OEM", price: 60086 }
+        ]
+      },
+
+      // VW GOL POWER / COUNTRY / SAVEIRO
+      { 
+        id: 304, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "GOL POWER / COUNTRY / SAVEIRO",
+        category: "frenos", 
+        image: "frenos-deportivos-golpower.png",
+        specs: "Ø 239 mm | Espesor: 20 mm | Altura: 39 mm | Centro: 65 mm | 4+1 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 126158 },
+          { name: "Lisos OEM", price: 78036 }
+        ]
+      },
+      { 
+        id: 305, 
+        name: "Pastillas de Freno Delanteras", 
+        carModel: "GOL POWER / COUNTRY / SAVEIRO",
+        category: "frenos", 
+        image: "pastillas-organicas-golpower.png",
+        specs: "Espesor: 15,3 mm | Sensor: No lleva",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 61121 },
+          { name: "Orgánicas BAR evo", price: 32091 },
+          { name: "Cerámicas Fri-ma", price: 66825 }
+        ]
+      },
+      { 
+        id: 306, 
+        name: "Kit de Frenos Delantero (Discos + Pastillas)", 
+        carModel: "GOL POWER / COUNTRY / SAVEIRO",
+        category: "frenos", 
+        image: "frenos-deportivos-golpower.png",
+        specs: "Discos Ventilados 239mm + Juego de Pastillas",
+        options: [
+          { name: "Con Pastillas Orgánicas LPR", price: 177915 },
+          { name: "Con Pastillas Cerámicas Fri-ma", price: 183334 }
+        ]
+      },
+
+      // HONDA CIVIC SI / NEW CIVIC
+      { 
+        id: 307, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "HONDA CIVIC SI",
+        category: "frenos", 
+        image: "frenos-civic-delanteros.png",
+        specs: "Ø 300 mm | Espesor: 25 mm | Altura: 47,2 mm | Centro: 64,3 mm | 5+2+2 Agujeros | Ventilado",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 278771 }
+        ]
+      },
+      { 
+        id: 308, 
+        name: "Discos Traseros (Juego de 2)", 
+        carModel: "HONDA NEW CIVIC / CIVIC SI",
+        category: "frenos", 
+        image: "frenos-civic-traseros.png",
+        specs: "Ø 260 mm | Espesor: 9 mm | Altura: 42,2 mm | Centro: 64 mm | 5+2+2 Agujeros | Sólido",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 154500 },
+          { name: "Lisos OEM", price: 112481 }
+        ]
+      },
+      { 
+        id: 309, 
+        name: "Pastillas de Freno Delanteras", 
+        carModel: "HONDA CIVIC SI",
+        category: "frenos", 
+        image: "pastillas-civic-delanteras.png",
+        specs: "135 x 52,5 mm | Espesor: 17 mm | Sistema: Sumitomo",
+        options: [
+          { name: "Orgánicas LPR Brakes / Samko", price: 123453 }
+        ]
+      },
+      { 
+        id: 310, 
+        name: "Pastillas de Freno Traseras", 
+        carModel: "HONDA NEW CIVIC / CIVIC SI",
+        category: "frenos", 
+        image: "pastillas-civic-traseras.png",
+        specs: "88,8 x 47,5 mm | Espesor: 14,6 mm | Sistema: Akebono",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 41941 },
+          { name: "Orgánicas BAR evo", price: 22324 }
+        ]
+      },
+      { 
+        id: 311, 
+        name: "Kit de Frenos Armados", 
+        carModel: "HONDA NEW CIVIC / CIVIC SI",
+        category: "frenos", 
+        image: "kit-completo-civic.png",
+        specs: "Incluye Discos Coated y Pastillas",
+        options: [
+          { name: "Kit Trasero (New Civic / Civic Si)", price: 186619 },
+          { name: "Kit Delantero (Civic Si)", price: 382112 },
+          { name: "Kit Completo 4 Ruedas (Civic Si)", price: 568731 }
+        ]
+      },
 
       // OTROS
       { id: 31, name: "Adaptador Entrec... 80 mm a 70 mm", price: 22000, category: "otros", image: "otro1.png" },
@@ -996,7 +1108,7 @@
                   <h3>${prod.name}</h3>
                   ${specsHtml}
                   <div class="option-select-group">
-                    <label>Elegí la versión de discos:</label>
+                    <label>Elegí la opción:</label>
                     <select class="option-select" onchange="updateProductOption(${prod.id}, this.value)">
                       ${selectOptionsHtml}
                     </select>
