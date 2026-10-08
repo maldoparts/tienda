@@ -940,8 +940,7 @@
         name: "Kit de Frenos Delantero (Discos + Pastillas)", 
         carModel: "GOL POWER / COUNTRY / SAVEIRO",
         category: "frenos", 
-        image: "frenos-deportivos-golpower.png",
-        specs: "Discos Ventilados 239mm + Juego de Pastillas",
+        specs: "Discos Ventilados 239mm + Juego de Pastillas a elección",
         options: [
           { name: "Con Pastillas Orgánicas LPR", price: 177915 },
           { name: "Con Pastillas Cerámicas Fri-ma", price: 183334 }
@@ -1206,7 +1205,7 @@
           name: `${prod.name} [${opt.name}]`,
           price: opt.price,
           qty: newQty,
-          image: prod.image
+          image: prod.image || ''
         };
       }
 
@@ -1231,7 +1230,7 @@
           name: prod.name,
           price: prod.price,
           qty: newQty,
-          image: prod.image
+          image: prod.image || ''
         };
       }
 
@@ -1263,8 +1262,11 @@
 
           const cartItem = document.createElement('div');
           cartItem.className = 'cart-item';
+          
+          let itemImgHtml = item.image ? `<img src="${item.image}" class="cart-item-img" onerror="this.style.display='none'">` : '';
+
           cartItem.innerHTML = `
-            <img src="${item.image}" class="cart-item-img" onerror="this.style.display='none'">
+            ${itemImgHtml}
             <div class="cart-item-details">
               <div class="cart-item-title">${item.name}</div>
               <div class="cart-item-price">$${item.price.toLocaleString('es-AR')} x ${item.qty} = $${subtotal.toLocaleString('es-AR')}</div>
