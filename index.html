@@ -131,7 +131,7 @@
       margin: 0 auto;
     }
 
-    /* CATEGORIES NAV CORREGIDO PARA MÓVILES */
+    /* CATEGORIES NAV */
     .categories-nav {
       display: flex;
       justify-content: flex-start;
@@ -431,7 +431,7 @@
       gap: 0.5rem;
     }
 
-    /* PANEL LATERAL DEL CARRITO (SIDEBAR) */
+    /* PANEL LATERAL DEL CARRITO */
     .cart-sidebar-backdrop {
       display: none;
       position: fixed;
@@ -668,7 +668,7 @@
     <img src="foto.png" alt="MaldoParts Banner" class="hero-logo">
   </section>
 
-  <!-- NAVEGACIÓN DE CATÁLOGOS CON FRENOS ANTEÚLTIMO -->
+  <!-- NAVEGACIÓN DE CATÁLOGOS -->
   <nav class="categories-nav">
     <button class="cat-btn active" onclick="filterCategory('all', event)"><i class="fa-solid fa-border-all"></i> Todos</button>
     <button class="cat-btn" onclick="filterCategory('volantes', event)">
@@ -705,7 +705,7 @@
     </button>
   </div>
 
-  <!-- PANEL LATERAL DEL CARRITO (SIDEBAR) -->
+  <!-- PANEL LATERAL DEL CARRITO -->
   <div class="cart-sidebar-backdrop" id="cartBackdrop" onclick="closeCartSidebar()"></div>
   <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-sidebar-header">
@@ -1008,7 +1008,7 @@
         ]
       },
 
-      // VW BORA (NUEVO AGREGADO)
+      // VW BORA
       { 
         id: 312, 
         name: "Discos Traseros (Juego de 2)", 
@@ -1088,6 +1088,141 @@
           { name: "Kit Delantero 1.8T 288mm (Pastillas Especiales)", price: 346405 },
           { name: "Kit Completo 4 Ruedas Estándar", price: 418909 },
           { name: "Kit Completo 4 Ruedas con Sensor", price: 505608 }
+        ]
+      },
+
+      // CHEVROLET CORSA 2 / CORSA II
+      { 
+        id: 318, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "CHEVROLET CORSA 2",
+        category: "frenos", 
+        image: "frenos-corsa2-delanteros-estandar.png",
+        specs: "Ø 260 mm | Espesor: 24 mm | Altura: 41 mm | Centro: 60 mm | 6+1 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 128786 },
+          { name: "Lisos OEM", price: 107591 }
+        ]
+      },
+      { 
+        id: 319, 
+        name: "Pastillas de Freno Delanteras", 
+        carModel: "CHEVROLET CORSA 2",
+        category: "frenos", 
+        image: "pastillas-corsa2-delanteras.png",
+        specs: "131,5 x 52,5 mm | Espesor: 17 mm | Sistema Bosch | Sin sensor",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 63911 },
+          { name: "Orgánicas BAR evo", price: 27906 }
+        ]
+      },
+      { 
+        id: 320, 
+        name: "Kit de Frenos Delantero Armado", 
+        carModel: "CHEVROLET CORSA 2",
+        category: "frenos", 
+        specs: "Discos MC16031 + Pastillas 05P1004",
+        options: [
+          { name: "Kit Delantero Estándar", price: 183062 }
+        ]
+      },
+
+      // CHEVROLET CORSA / CLASSIC
+      { 
+        id: 321, 
+        name: "Discos Delanteros Ventilados (Juego de 2)", 
+        carModel: "CHEVROLET CORSA / CLASSIC",
+        category: "frenos", 
+        image: "frenos-corsaclassic-delanteros-estandar.png",
+        specs: "Ø 236 mm | Espesor: 20 mm | Altura: 41 mm | Centro: 60 mm | 6+1 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 91227 },
+          { name: "Lisos OEM", price: 75622 }
+        ]
+      },
+      { 
+        id: 322, 
+        name: "Discos Delanteros Sólidos (Juego de 2)", 
+        carModel: "CHEVROLET CORSA / CLASSIC",
+        category: "frenos", 
+        specs: "Ø 236 mm | Espesor: 12,6 mm | Altura: 41,2 mm | Centro: 60 mm | 4+1 Agujeros | Tipo: Sólido",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 94785 },
+          { name: "Lisos OEM", price: 82102 }
+        ]
+      },
+      { 
+        id: 323, 
+        name: "Pastillas de Freno Delanteras (Sistema Bosch)", 
+        carModel: "CHEVROLET CORSA / CLASSIC",
+        category: "frenos", 
+        image: "pastillas-corsaclassic-delanteras-bosch.png",
+        specs: "131,5 x 52,5 mm | Espesor: 17 mm | Sistema Bosch | Sin sensor",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 63911 },
+          { name: "Orgánicas BAR evo", price: 27906 }
+        ]
+      },
+      { 
+        id: 324, 
+        name: "Pastillas de Freno Delanteras (Sistema Teves)", 
+        carModel: "CHEVROLET CORSA / CLASSIC",
+        category: "frenos", 
+        image: "pastillas-corsaclassic-delanteras-teves.png",
+        specs: "140,1 x 51,6 mm | Espesor: 16,2 mm | Sistema Teves | Sin sensor",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 58053 },
+          { name: "Orgánicas BAR evo", price: 25839 }
+        ]
+      },
+
+      // AUDI A3 1.4 TFSI
+      { 
+        id: 325, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "AUDI A3 1.4 TFSI",
+        category: "frenos", 
+        image: "frenos-audia3-delanteros-estandar.png",
+        specs: "Ø 288 mm | Espesor: 25 mm | Altura: 50 mm | Centro: 65 mm | 9+1 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 232302 },
+          { name: "Lisos OEM", price: 165029 }
+        ]
+      },
+      { 
+        id: 326, 
+        name: "Discos Traseros (Juego de 2)", 
+        carModel: "AUDI A3 1.4 TFSI",
+        category: "frenos", 
+        image: "frenos-audia3-traseros-estandar.png",
+        specs: "Ø 272 mm | Espesor: 10 mm | Altura: 48 mm | Centro: 65 mm | 5 Agujeros | Tipo: Sólido",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 182800 },
+          { name: "Lisos OEM", price: 133956 }
+        ]
+      },
+      { 
+        id: 327, 
+        name: "Pastillas de Freno Delanteras", 
+        carModel: "AUDI A3 1.4 TFSI",
+        category: "frenos", 
+        image: "pastillas-audia3-delanteras-lpr.png",
+        specs: "155,2 x 66 mm | Espesor: 20 mm | Sistema ATE | Con Sensor",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 79790 },
+          { name: "Orgánicas BAR evo", price: 54260 }
+        ]
+      },
+      { 
+        id: 328, 
+        name: "Pastillas de Freno Traseras", 
+        carModel: "AUDI A3 1.4 TFSI",
+        category: "frenos", 
+        image: "pastillas-audia3-traseras-lpr.png",
+        specs: "86,7 x 53 mm | Espesor: 15 mm | Sistema Girling | Sin Sensor",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 35268 },
+          { name: "Orgánicas BAR evo", price: 18056 }
         ]
       },
 
@@ -1250,7 +1385,7 @@
       });
     }
 
-    // MANEJO DE OPCIONES DE PRODUCTO (PARA FRENOS)
+    // MANEJO DE OPCIONES DE PRODUCTO
     function updateProductOption(productId, optionIndex) {
       selectedOptions[productId] = parseInt(optionIndex);
       const prod = productsData.find(p => p.id === productId);
