@@ -184,13 +184,17 @@
       padding: 0 1.5rem;
     }
 
+    .category-section {
+      margin-bottom: 2.5rem;
+    }
+
     .category-title {
       font-family: var(--font-title);
       font-size: 2.5rem;
       letter-spacing: 1px;
       border-left: 4px solid var(--primary-red);
       padding-left: 1rem;
-      margin: 2rem 0 1rem;
+      margin: 1.5rem 0 1rem;
       text-transform: uppercase;
       display: flex;
       align-items: center;
@@ -809,14 +813,14 @@
       { id: 101, name: "Amortiguadores para capot Toyota Corolla G11, 2014 a 2019", price: 80500, category: "amortiguadores", image: "amort1.png" },
       { id: 102, name: "Amortiguadores para capot Ford Ranger 2023 en adelante", price: 145475, category: "amortiguadores", image: "amort2.png" },
       { id: 103, name: "Amortiguadores para capot Volkswagen T-Cross", price: 128800, category: "amortiguadores", image: "amort3.png" },
-      { id: 104, name: "Amortiguadores para capot Volkswagen Golf - Jetta MK3", price: 80500, category: "amortiguadores", image: "amort4.png" },
+      { id: 104, name: "Amortiguadores para capot Volkswagen Golf - Jetta MK3", price: 80500, category: "amortiguadores", image: "amort4.png", carModel: "VW GOLF" },
       { id: 105, name: "Amortiguadores para capot Toyota Corolla Cross", price: 80500, category: "amortiguadores", image: "amort5.png" },
       { id: 106, name: "Amortiguadores para capot Ford Kuga MK2", price: 108100, category: "amortiguadores", image: "amort6.png" },
       { id: 107, name: "Amortiguadores para capot Renault Logan 2004 a 2015", price: 63250, category: "amortiguadores", image: "amort7.png" },
       { id: 108, name: "Amortiguadores para capot Volkswagen Nivus", price: 128800, category: "amortiguadores", image: "amort8.png" },
-      { id: 109, name: "Amortiguadores para capot Honda Civic G7 2000 a 2005", price: 80500, category: "amortiguadores", image: "amort9.png" },
+      { id: 109, name: "Amortiguadores para capot Honda Civic G7 2000 a 2005", price: 80500, category: "amortiguadores", image: "amort9.png", carModel: "HONDA CIVIC" },
       { id: 110, name: "Amortiguadores para capot Volkswagen Polo 1995 a 2008", price: 80500, category: "amortiguadores", image: "amort10.png" },
-      { id: 111, name: "Amortiguadores para capot Chevrolet Corsa y Classic", price: 71300, category: "amortiguadores", image: "amort11.png" },
+      { id: 111, name: "Amortiguadores para capot Chevrolet Corsa y Classic", price: 71300, category: "amortiguadores", image: "amort11.png", carModel: "CORSA" },
       { id: 112, name: "Amortiguadores para capot Ford Fiesta MK6 2010 a 2019", price: 71300, category: "amortiguadores", image: "amort12.png" },
       { id: 113, name: "Amortiguadores para capot Nissan Sentra N17 2020 en adelante", price: 80500, category: "amortiguadores", image: "amort13.png" },
       { id: 114, name: "Amortiguadores para capot Suzuki Fun", price: 71300, category: "amortiguadores", image: "amort14.png" },
@@ -1480,7 +1484,7 @@
     let selectedOptions = {};
     let currentCategory = 'all';
 
-    // RENDER CATALOG PRODUCTS
+    // RENDER CATALOG PRODUCTS EN SECCIONES
     function renderCatalog() {
       const catalogEl = document.getElementById('catalog');
       catalogEl.innerHTML = '';
@@ -1500,10 +1504,13 @@
         const filteredProds = productsData.filter(p => p.category === cat.id);
 
         if (filteredProds.length > 0) {
+          const section = document.createElement('div');
+          section.className = 'category-section';
+
           const catHeader = document.createElement('h2');
           catHeader.className = 'category-title';
           catHeader.innerHTML = cat.title;
-          catalogEl.appendChild(catHeader);
+          section.appendChild(catHeader);
 
           const grid = document.createElement('div');
           grid.className = 'products-grid';
@@ -1600,7 +1607,8 @@
             grid.appendChild(card);
           });
 
-          catalogEl.appendChild(grid);
+          section.appendChild(grid);
+          catalogEl.appendChild(section);
         }
       });
     }
@@ -1749,34 +1757,40 @@
         evt.currentTarget.classList.add('active');
       }
       renderCatalog();
+      // Si había algo escrito en el buscador, reaplica el filtro
+      filterProducts();
     }
 
-    // BUSCADOR INTELIGENTE POR NOMBRE, MODELO DE AUTO Y CATEGORÍA
+    // BUSCADOR ULTRA PRECISO POR TEXTO INTERNO DE CADA TARJETA
     function filterProducts() {
       const query = document.getElementById('searchInput').value.toLowerCase().trim();
-      const cards = document.querySelectorAll('.product-card');
+      const sections = document.querySelectorAll('.category-section');
 
-      if (!query) {
-        cards.forEach(card => card.style.display = 'flex');
-        return;
-      }
+      sections.forEach(section => {
+        const cards = section.querySelectorAll('.product-card');
+        let visibleCount = 0;
 
-      productsData.forEach(prod => {
-        const nameMatch = prod.name ? prod.name.toLowerCase().includes(query) : false;
-        const carModelMatch = prod.carModel ? prod.carModel.toLowerCase().includes(query) : false;
-        const categoryMatch = prod.category ? prod.category.toLowerCase().includes(query) : false;
-
-        const cardEl = Array.from(cards).find(card => {
-          const titleEl = card.querySelector('h3');
-          return titleEl && titleEl.innerText.toLowerCase().includes(prod.name.toLowerCase());
+        cards.forEach(card => {
+          if (!query) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            // Lee todo el contenido de texto dentro de la tarjeta
+            const cardText = card.innerText.toLowerCase();
+            if (cardText.includes(query)) {
+              card.style.display = 'flex';
+              visibleCount++;
+            } else {
+              card.style.display = 'none';
+            }
+          }
         });
 
-        if (cardEl) {
-          if (nameMatch || carModelMatch || categoryMatch) {
-            cardEl.style.display = 'flex';
-          } else {
-            cardEl.style.display = 'none';
-          }
+        // Oculta el título de categoría entero si no hay productos que coincidan
+        if (visibleCount === 0 && query !== "") {
+          section.style.display = 'none';
+        } else {
+          section.style.display = 'block';
         }
       });
     }
