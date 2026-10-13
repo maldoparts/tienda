@@ -38,6 +38,7 @@
       touch-action: manipulation;
     }
 
+    /* HEADER SOLO CON BUSCADOR Y CARRITO */
     header {
       background-color: #0A0A0A;
       border-bottom: 2px solid var(--primary-red);
@@ -107,6 +108,7 @@
       font-size: 0.8rem;
     }
 
+    /* BANNER PRINCIPAL */
     .hero {
       background-color: #000000;
       padding: 0;
@@ -129,6 +131,7 @@
       margin: 0 auto;
     }
 
+    /* CATEGORIES NAV */
     .categories-nav {
       display: flex;
       justify-content: flex-start;
@@ -174,6 +177,7 @@
       border-color: var(--primary-red);
     }
 
+    /* MAIN CATALOG CONTAINER */
     .catalog-container {
       max-width: 1200px;
       margin: 2rem auto;
@@ -206,6 +210,7 @@
       gap: 1.5rem;
     }
 
+    /* PRODUCT CARD & IMAGES */
     .product-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -381,6 +386,7 @@
       background: #1ebc57;
     }
 
+    /* FLOATING CART BAR */
     .cart-float-bar {
       position: fixed;
       bottom: 20px;
@@ -425,6 +431,7 @@
       gap: 0.5rem;
     }
 
+    /* PANEL LATERAL DEL CARRITO */
     .cart-sidebar-backdrop {
       display: none;
       position: fixed;
@@ -545,6 +552,7 @@
       font-size: 1rem;
     }
 
+    /* MODAL ORDER FORM */
     .modal-backdrop {
       display: none;
       position: fixed;
@@ -619,6 +627,7 @@
       cursor: pointer;
     }
 
+    /* FOOTER */
     footer {
       background: #050505;
       border-top: 1px solid var(--border-color);
@@ -640,6 +649,7 @@
 </head>
 <body>
 
+  <!-- HEADER CON BUSCADOR Y CARRITO -->
   <header>
     <div class="header-actions">
       <div class="search-box">
@@ -653,10 +663,12 @@
     </div>
   </header>
 
+  <!-- BANNER EXCLUSIVO CON LOGO EN ANCHO COMPLETO -->
   <section class="hero">
     <img src="foto.png" alt="MaldoParts Banner" class="hero-logo">
   </section>
 
+  <!-- NAVEGACIÓN DE CATÁLOGOS -->
   <nav class="categories-nav">
     <button class="cat-btn active" onclick="filterCategory('all', event)"><i class="fa-solid fa-border-all"></i> Todos</button>
     <button class="cat-btn" onclick="filterCategory('volantes', event)">
@@ -679,8 +691,10 @@
     </button>
   </nav>
 
+  <!-- CONTENEDOR PRINCIPAL -->
   <main class="catalog-container" id="catalog"></main>
 
+  <!-- BARRA FLOTANTE DEL CARRITO -->
   <div class="cart-float-bar" id="cartBar" style="display: none;">
     <div class="cart-info">
       <span class="cart-count" id="cartCount">0 productos seleccionados</span>
@@ -691,6 +705,7 @@
     </button>
   </div>
 
+  <!-- PANEL LATERAL DEL CARRITO -->
   <div class="cart-sidebar-backdrop" id="cartBackdrop" onclick="closeCartSidebar()"></div>
   <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-sidebar-header">
@@ -709,6 +724,7 @@
     </div>
   </div>
 
+  <!-- MODAL DE DATOS PARA WHATSAPP -->
   <div class="modal-backdrop" id="orderModal">
     <div class="modal-content">
       <h2>CONFIRMAR PEDIDO</h2>
@@ -732,6 +748,7 @@
     </div>
   </div>
 
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2026 <strong>MaldoParts</strong>. Todos los derechos reservados.</p>
     <p>Especialistas en autopartes, accesorios y equipamiento automotriz.</p>
@@ -740,6 +757,7 @@
   <script>
     const WHATSAPP_NUMBER = "5491164016408";
 
+    // CATALOGO COMPLETO CON NOMBRES DE IMAGEN
     const productsData = [
       // VOLANTES
       { id: 1, name: "Volante Stick Perforado 35cm", price: 50000, category: "volantes", image: "volante1.png" },
@@ -793,8 +811,71 @@
       { id: 103, name: "Amortiguadores para capot Volkswagen T-Cross", price: 128800, category: "amortiguadores", image: "amort3.png" },
       { id: 104, name: "Amortiguadores para capot Volkswagen Golf - Jetta MK3", price: 80500, category: "amortiguadores", image: "amort4.png" },
       { id: 105, name: "Amortiguadores para capot Toyota Corolla Cross", price: 80500, category: "amortiguadores", image: "amort5.png" },
+      { id: 106, name: "Amortiguadores para capot Ford Kuga MK2", price: 108100, category: "amortiguadores", image: "amort6.png" },
+      { id: 107, name: "Amortiguadores para capot Renault Logan 2004 a 2015", price: 63250, category: "amortiguadores", image: "amort7.png" },
+      { id: 108, name: "Amortiguadores para capot Volkswagen Nivus", price: 128800, category: "amortiguadores", image: "amort8.png" },
+      { id: 109, name: "Amortiguadores para capot Honda Civic G7 2000 a 2005", price: 80500, category: "amortiguadores", image: "amort9.png" },
+      { id: 110, name: "Amortiguadores para capot Volkswagen Polo 1995 a 2008", price: 80500, category: "amortiguadores", image: "amort10.png" },
+      { id: 111, name: "Amortiguadores para capot Chevrolet Corsa y Classic", price: 71300, category: "amortiguadores", image: "amort11.png" },
+      { id: 112, name: "Amortiguadores para capot Ford Fiesta MK6 2010 a 2019", price: 71300, category: "amortiguadores", image: "amort12.png" },
+      { id: 113, name: "Amortiguadores para capot Nissan Sentra N17 2020 en adelante", price: 80500, category: "amortiguadores", image: "amort13.png" },
+      { id: 114, name: "Amortiguadores para capot Suzuki Fun", price: 71300, category: "amortiguadores", image: "amort14.png" },
+      { id: 115, name: "Amortiguadores para capot Fiat Bravo", price: 80500, category: "amortiguadores", image: "amort15.png" },
+      { id: 116, name: "Amortiguadores para capot Fiat Toro", price: 128800, category: "amortiguadores", image: "amort16.png" },
+      { id: 117, name: "Amortiguadores para capot Chevrolet Astra", price: 80500, category: "amortiguadores", image: "amort17.png" },
+      { id: 118, name: "Amortiguadores para capot Fiat Palio Siena Strada Fire", price: 80500, category: "amortiguadores", image: "amort18.png" },
+      { id: 119, name: "Amortiguadores para capot Ford Orion / Escort MK5-MK6", price: 80500, category: "amortiguadores", image: "amort19.png" },
+      { id: 120, name: "Amortiguadores para capot Peugeot 208 2019 en adelante", price: 87400, category: "amortiguadores", image: "amort20.png" },
+      { id: 121, name: "Amortiguadores para capot Volkswagen Taos", price: 128800, category: "amortiguadores", image: "amort21.png" },
+      { id: 122, name: "Amortiguadores para capot Jeep Renegade", price: 128800, category: "amortiguadores", image: "amort22.png" },
+      { id: 123, name: "Amortiguadores para capot Fiat Palio Siena Strada G1", price: 80500, category: "amortiguadores", image: "amort23.png" },
+      { id: 124, name: "Amortiguadores para capot Chevrolet Aveo", price: 71300, category: "amortiguadores", image: "amort24.png" },
+      { id: 125, name: "Amortiguadores para capot Peugeot 206", price: 63250, category: "amortiguadores", image: "amort25.png" },
+      { id: 126, name: "Amortiguadores para capot Volkswagen Vento MK6", price: 80500, category: "amortiguadores", image: "amort26.png" },
+      { id: 127, name: "Amortiguadores para capot Peugeot 307 Fase 1", price: 80500, category: "amortiguadores", image: "amort27.png" },
+      { id: 128, name: "Amortiguadores para capot Peugeot 308S T9 Allure plus, GT y GTI", price: 87400, category: "amortiguadores", image: "amort28.png" },
+      { id: 129, name: "Amortiguadores para capot Volkswagen Up", price: 80500, category: "amortiguadores", image: "amort29.png" },
+      { id: 130, name: "Amortiguadores para capot Fiat Argo", price: 80500, category: "amortiguadores", image: "amort30.png" },
+      { id: 131, name: "Amortiguadores para capot Volkswagen Suran", price: 80500, category: "amortiguadores", image: "amort31.png" },
+      { id: 132, name: "Amortiguadores para capot Chevrolet Celta", price: 71300, category: "amortiguadores", image: "amort32.png" },
+      { id: 133, name: "Amortiguadores para capot Ford Focus III y KD", price: 87400, category: "amortiguadores", image: "amort33.png" },
+      { id: 134, name: "Amortiguadores para capot Volkswagen G4 Gol Saveiro Country", price: 71300, category: "amortiguadores", image: "amort34.png" },
+      { id: 135, name: "Amortiguadores para capot Volkswagen G6 G7 G8 Gol Saveiro Voyage", price: 87400, category: "amortiguadores", image: "amort35.png" },
+      { id: 136, name: "Amortiguadores para capot Volkswagen G2 (AB9) Gol Saveiro Country", price: 71300, category: "amortiguadores", image: "amort36.png" },
+      { id: 137, name: "Amortiguadores para capot Volkswagen G3 Gol Saveiro Country", price: 71300, category: "amortiguadores", image: "amort37.png" },
+      { id: 138, name: "Amortiguadores para capot Ford Ranger Raptor > 2023", price: 145475, category: "amortiguadores", image: "amort38.png" },
+      { id: 139, name: "Amortiguadores para capot Toyota Hilux G7 (2005-2015)", price: 145475, category: "amortiguadores", image: "amort39.png" },
+      { id: 140, name: "Amortiguadores para capot Ford Ka G3 2014 a 2021", price: 80500, category: "amortiguadores", image: "amort40.png" },
+      { id: 141, name: "Amortiguadores para capot Peugeot 308/408", price: 79120, category: "amortiguadores", image: "amort41.png" },
+      { id: 142, name: "Amortiguadores para capot Toyota Corolla G9 2002 a 2008", price: 87400, category: "amortiguadores", image: "amort42.png" },
+      { id: 143, name: "Amortiguadores para capot Renault 9/11", price: 80500, category: "amortiguadores", image: "amort43.png" },
+      { id: 144, name: "Amortiguadores para capot Renault Sandero", price: 80500, category: "amortiguadores", image: "amort44.png" },
+      { id: 145, name: "Amortiguadores para capot Fiat Punto 2007 a 2012", price: 80500, category: "amortiguadores", image: "amort45.png" },
+      { id: 146, name: "Amortiguadores para capot Ford Focus II", price: 80500, category: "amortiguadores", image: "amort46.png" },
+      { id: 147, name: "Amortiguadores para capot Fiat Punto 2013 a 2017", price: 80500, category: "amortiguadores", image: "amort47.png" },
+      { id: 148, name: "Amortiguadores para capot Toyota Corolla G12/13 2020 en adelante", price: 80500, category: "amortiguadores", image: "amort48.png" },
+      { id: 149, name: "Amortiguadores para capot Peugeot 207", price: 63250, category: "amortiguadores", image: "amort49.png" },
+      { id: 150, name: "Amortiguadores para capot Jeep Compass Commander", price: 145475, category: "amortiguadores", image: "amort50.png" },
+      { id: 151, name: "Amortiguadores para capot Fiat Uno Way", price: 80500, category: "amortiguadores", image: "amort51.png" },
+      { id: 152, name: "Amortiguadores para capot Renault Megane 1 Fase 2", price: 80500, category: "amortiguadores", image: "amort52.png" },
+      { id: 153, name: "Amortiguadores para capot Ford Mondeo MK5 2015 a 2021", price: 87400, category: "amortiguadores", image: "amort53.png" },
+      { id: 154, name: "Amortiguadores para capot Toyota Corolla G10 2009 a 2013", price: 80500, category: "amortiguadores", image: "amort54.png" },
+      { id: 155, name: "Amortiguadores para capot Volkswagen Polo New GTS Track", price: 87400, category: "amortiguadores", image: "amort55.png" },
+      { id: 156, name: "Amortiguadores para capot Honda Accord 1994 a 1998", price: 80500, category: "amortiguadores", image: "amort56.png" },
+      { id: 157, name: "Amortiguadores para capot Ford Fiesta Max One Ambient", price: 71300, category: "amortiguadores", image: "amort57.png" },
+      { id: 158, name: "Amortiguadores para capot Volkswagen G1 Gol Saveiro Senda", price: 71300, category: "amortiguadores", image: "amort58.png" },
+      { id: 159, name: "Amortiguadores para capot Renault Fuego", price: 80500, category: "amortiguadores", image: "amort59.png" },
+      { id: 160, name: "Amortiguadores para capot Volkswagen Scirocco", price: 108100, category: "amortiguadores", image: "amort60.png" },
+      { id: 161, name: "Amortiguadores para capot Renault Clio 2 Fase 2 - Mio - Symbol", price: 71300, category: "amortiguadores", image: "amort61.png" },
+      { id: 162, name: "Amortiguadores para capot Volkswagen Fox", price: 80500, category: "amortiguadores", image: "amort62.png" },
+      { id: 163, name: "Amortiguadores para capot Volkswagen Amarok", price: 145475, category: "amortiguadores", image: "amort63.png" },
+      { id: 164, name: "Amortiguadores para capot Renault Fluence", price: 80500, category: "amortiguadores", image: "amort64.png" },
+      { id: 165, name: "Amortiguadores para capot Fiat Uno - Duna - Fiorino R2", price: 63250, category: "amortiguadores", image: "amort65.png" },
+      { id: 166, name: "Amortiguadores para capot Volkswagen G5 Gol Saveiro Voyage", price: 80500, category: "amortiguadores", image: "amort66.png" },
+      { id: 167, name: "Amortiguadores para capot Peugeot 307 Fase 2", price: 63250, category: "amortiguadores", image: "amort67.png" },
+      { id: 168, name: "Amortiguadores para capot Volkswagen Tiguan G1 2007 a 2016", price: 80500, category: "amortiguadores", image: "amort68.png" },
 
-      // FRENOS - VW GOLF
+      // FRENOS - VW GOLF DETALLADO
       {
         id: 401,
         name: "Discos Delanteros Ø 340 mm (Juego de 2)",
@@ -1009,15 +1090,397 @@
         ]
       },
 
+      // FRENOS - FIAT & GOL G1
+      { 
+        id: 301, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "FIAT UNO TURBO IE",
+        category: "frenos", 
+        image: "frenos-delanteros.png",
+        specs: "Ø 257 mm | Espesor: 20 mm | Altura: 40,5 mm | Centro: 59 mm | 4+2 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 143669 },
+          { name: "Lisos OEM", price: 100496 }
+        ]
+      },
+      { 
+        id: 302, 
+        name: "Discos Traseros (Juego de 2)", 
+        carModel: "FIAT UNO TURBO IE",
+        category: "frenos", 
+        image: "frenos-traseros.png",
+        specs: "Ø 240 mm | Espesor: 11 mm | Altura: 40 mm | Centro: 59 mm | 4+2 Agujeros | Tipo: Sólido",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 111756 },
+          { name: "Lisos OEM", price: 95505 }
+        ]
+      },
+      { 
+        id: 303, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "GOL G1 / FIAT 128 / UNO / DUNA",
+        category: "frenos", 
+        image: "frenos-gol-g1.png",
+        specs: "Ø 239 mm | Espesor: 12 mm | Altura: 35 mm | Centro: 65 mm | 4+1 Agujeros | Tipo: Sólido",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 77040 },
+          { name: "Lisos OEM", price: 60086 }
+        ]
+      },
+
+      // VW GOL POWER / COUNTRY / SAVEIRO
+      { 
+        id: 304, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "GOL POWER / COUNTRY / SAVEIRO",
+        category: "frenos", 
+        image: "frenos-deportivos-golpower.png",
+        specs: "Ø 239 mm | Espesor: 20 mm | Altura: 39 mm | Centro: 65 mm | 4+1 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 126158 },
+          { name: "Lisos OEM", price: 78036 }
+        ]
+      },
+      { 
+        id: 305, 
+        name: "Pastillas de Freno Delanteras", 
+        carModel: "GOL POWER / COUNTRY / SAVEIRO",
+        category: "frenos", 
+        image: "pastillas-organicas-golpower.png",
+        specs: "Espesor: 15,3 mm | Sensor: No lleva",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 61121 },
+          { name: "Orgánicas BAR evo", price: 32091 },
+          { name: "Cerámicas Fri-ma", price: 66825 }
+        ]
+      },
+      { 
+        id: 306, 
+        name: "Kit de Frenos Delantero (Discos + Pastillas)", 
+        carModel: "GOL POWER / COUNTRY / SAVEIRO",
+        category: "frenos", 
+        specs: "Discos Ventilados 239mm + Juego de Pastillas a elección",
+        options: [
+          { name: "Con Pastillas Orgánicas LPR", price: 177915 },
+          { name: "Con Pastillas Cerámicas Fri-ma", price: 183334 }
+        ]
+      },
+
+      // HONDA NEW CIVIC / CIVIC SI
+      { 
+        id: 307, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "HONDA NEW CIVIC / CIVIC SI",
+        category: "frenos", 
+        image: "frenos-civic-delanteros.png",
+        specs: "Ø 300 mm | Espesor: 25 mm | Altura: 47,2 mm | Centro: 64,3 mm | 5+2+2 Agujeros | Ventilado",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 278771 }
+        ]
+      },
+      { 
+        id: 308, 
+        name: "Discos Traseros (Juego de 2)", 
+        carModel: "HONDA NEW CIVIC / CIVIC SI",
+        category: "frenos", 
+        image: "frenos-civic-traseros.png",
+        specs: "Ø 260 mm | Espesor: 9 mm | Altura: 42,2 mm | Centro: 64 mm | 5+2+2 Agujeros | Sólido",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 154500 },
+          { name: "Lisos OEM", price: 112481 }
+        ]
+      },
+      { 
+        id: 309, 
+        name: "Pastillas de Freno Delanteras", 
+        carModel: "HONDA NEW CIVIC / CIVIC SI",
+        category: "frenos", 
+        image: "pastillas-civic-delanteras.png",
+        specs: "135 x 52,5 mm | Espesor: 17 mm | Sistema: Sumitomo",
+        options: [
+          { name: "Orgánicas LPR Brakes / Samko", price: 123453 }
+        ]
+      },
+      { 
+        id: 310, 
+        name: "Pastillas de Freno Traseras", 
+        carModel: "HONDA NEW CIVIC / CIVIC SI",
+        category: "frenos", 
+        image: "pastillas-civic-traseras.png",
+        specs: "88,8 x 47,5 mm | Espesor: 14,6 mm | Sistema: Akebono",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 41941 },
+          { name: "Orgánicas BAR evo", price: 22324 }
+        ]
+      },
+      { 
+        id: 311, 
+        name: "Kit de Frenos Armados", 
+        carModel: "HONDA NEW CIVIC / CIVIC SI",
+        category: "frenos", 
+        image: "kit-completo-civic.png",
+        specs: "Incluye Discos Coated y Pastillas",
+        options: [
+          { name: "Kit Trasero (New Civic / Civic Si)", price: 186619 },
+          { name: "Kit Delantero (Civic Si)", price: 382112 },
+          { name: "Kit Completo 4 Ruedas (Civic Si)", price: 568731 }
+        ]
+      },
+
+      // VW BORA
+      { 
+        id: 312, 
+        name: "Discos Traseros (Juego de 2)", 
+        carModel: "VW BORA",
+        category: "frenos", 
+        image: "frenos-bora-trasero-estandar.png",
+        specs: "Ø 232 mm | Espesor: 9 mm | Altura: 39,3 mm | Centro: 65 mm | 5+1 Agujeros | Tipo: Sólido",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 103143 },
+          { name: "Lisos OEM", price: 56176 }
+        ]
+      },
+      { 
+        id: 313, 
+        name: "Discos Delanteros 280mm (Juego de 2)", 
+        carModel: "VW BORA",
+        category: "frenos", 
+        image: "frenos-bora-delantero-280.png",
+        specs: "Ø 280 mm | Espesor: 22 mm | Altura: 36,7 mm | Centro: 65 mm | 5+1 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 155272 },
+          { name: "Lisos OEM", price: 112433 }
+        ]
+      },
+      { 
+        id: 314, 
+        name: "Discos Delanteros 288mm (Juego de 2)", 
+        carModel: "VW BORA",
+        category: "frenos", 
+        image: "frenos-bora-delantero-288.png",
+        specs: "Ø 288 mm | Espesor: 25 mm | Altura: 34,2 mm | Centro: 65 mm | 5+1 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 211640 },
+          { name: "Lisos OEM", price: 151244 }
+        ]
+      },
+      { 
+        id: 315, 
+        name: "Pastillas de Freno Delanteras", 
+        carModel: "VW BORA",
+        category: "frenos", 
+        image: "pastillas-bora-delanteras-lpr.png",
+        specs: "Sistema TEVES | Con Sensor de desgaste",
+        options: [
+          { name: "Orgánicas LPR Brakes (156,2 x 74 mm)", price: 152997 },
+          { name: "Orgánicas BAR evo (156,2 x 74 mm)", price: 69764 },
+          { name: "Orgánicas LPR Brakes (146 x 54,7 mm)", price: 67514 },
+          { name: "Orgánicas BAR evo (146 x 54,7 mm)", price: 42260 },
+          { name: "Cerámicas Fri-ma (146 x 54,7 mm)", price: 97784 }
+        ]
+      },
+      { 
+        id: 316, 
+        name: "Pastillas de Freno Traseras", 
+        carModel: "VW BORA",
+        category: "frenos", 
+        image: "pastillas-bora-traseras-ceramicas.png",
+        specs: "86,7 x 53 mm | Espesor: 15 mm | Sistema Girling | Sin sensor",
+        options: [
+          { name: "Cerámicas Fri-ma", price: 64439 },
+          { name: "Orgánicas LPR Brakes", price: 35268 },
+          { name: "Orgánicas BAR evo", price: 18056 }
+        ]
+      },
+      { 
+        id: 317, 
+        name: "Kits de Frenos Armados", 
+        carModel: "VW BORA",
+        category: "frenos", 
+        specs: "Combos de Discos y Pastillas para Eje Delantero, Trasero o 4 Ruedas",
+        options: [
+          { name: "Kit Trasero Estándar (Pastillas LPR)", price: 131491 },
+          { name: "Kit Trasero Estándar (Pastillas Cerámicas)", price: 159203 },
+          { name: "Kit Delantero Coated (Pastillas LPR)", price: 211646 },
+          { name: "Kit Delantero Coated (Pastillas Cerámicas)", price: 240403 },
+          { name: "Kit Delantero 1.8T 288mm (Pastillas LPR)", price: 287418 },
+          { name: "Kit Delantero 1.8T 288mm (Pastillas Especiales)", price: 346405 },
+          { name: "Kit Completo 4 Ruedas Estándar", price: 418909 },
+          { name: "Kit Completo 4 Ruedas con Sensor", price: 505608 }
+        ]
+      },
+
+      // CHEVROLET CORSA 2 / CORSA II
+      { 
+        id: 318, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "CHEVROLET CORSA 2",
+        category: "frenos", 
+        image: "frenos-corsa2-delanteros-estandar.png",
+        specs: "Ø 260 mm | Espesor: 24 mm | Altura: 41 mm | Centro: 60 mm | 6+1 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 128786 },
+          { name: "Lisos OEM", price: 107591 }
+        ]
+      },
+      { 
+        id: 319, 
+        name: "Pastillas de Freno Delanteras", 
+        carModel: "CHEVROLET CORSA 2",
+        category: "frenos", 
+        image: "pastillas-corsa2-delanteras.png",
+        specs: "131,5 x 52,5 mm | Espesor: 17 mm | Sistema Bosch | Sin sensor",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 63911 },
+          { name: "Orgánicas BAR evo", price: 27906 }
+        ]
+      },
+      { 
+        id: 320, 
+        name: "Kit de Frenos Delantero Armado", 
+        carModel: "CHEVROLET CORSA 2",
+        category: "frenos", 
+        specs: "Discos MC16031 + Pastillas 05P1004",
+        options: [
+          { name: "Kit Delantero Estándar", price: 183062 }
+        ]
+      },
+
+      // CHEVROLET CORSA / CLASSIC
+      { 
+        id: 321, 
+        name: "Discos Delanteros Ventilados (Juego de 2)", 
+        carModel: "CHEVROLET CORSA / CLASSIC",
+        category: "frenos", 
+        image: "frenos-corsaclassic-delanteros-estandar.png",
+        specs: "Ø 236 mm | Espesor: 20 mm | Altura: 41 mm | Centro: 60 mm | 6+1 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 91227 },
+          { name: "Lisos OEM", price: 75622 }
+        ]
+      },
+      { 
+        id: 322, 
+        name: "Discos Delanteros Sólidos (Juego de 2)", 
+        carModel: "CHEVROLET CORSA / CLASSIC",
+        category: "frenos", 
+        specs: "Ø 236 mm | Espesor: 12,6 mm | Altura: 41,2 mm | Centro: 60 mm | 4+1 Agujeros | Tipo: Sólido",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 94785 },
+          { name: "Lisos OEM", price: 82102 }
+        ]
+      },
+      { 
+        id: 323, 
+        name: "Pastillas de Freno Delanteras (Sistema Bosch)", 
+        carModel: "CHEVROLET CORSA / CLASSIC",
+        category: "frenos", 
+        image: "pastillas-corsaclassic-delanteras-bosch.png",
+        specs: "131,5 x 52,5 mm | Espesor: 17 mm | Sistema Bosch | Sin sensor",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 63911 },
+          { name: "Orgánicas BAR evo", price: 27906 }
+        ]
+      },
+      { 
+        id: 324, 
+        name: "Pastillas de Freno Delanteras (Sistema Teves)", 
+        carModel: "CHEVROLET CORSA / CLASSIC",
+        category: "frenos", 
+        image: "pastillas-corsaclassic-delanteras-teves.png",
+        specs: "140,1 x 51,6 mm | Espesor: 16,2 mm | Sistema Teves | Sin sensor",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 58053 },
+          { name: "Orgánicas BAR evo", price: 25839 }
+        ]
+      },
+
+      // AUDI A3 1.4 TFSI
+      { 
+        id: 325, 
+        name: "Discos Delanteros (Juego de 2)", 
+        carModel: "AUDI A3 1.4 TFSI",
+        category: "frenos", 
+        image: "frenos-audia3-delanteros-estandar.png",
+        specs: "Ø 288 mm | Espesor: 25 mm | Altura: 50 mm | Centro: 65 mm | 9+1 Agujeros | Tipo: Ventilado",
+        options: [
+          { name: "Ranurados y Perforados ESTÁNDAR", price: 232302 },
+          { name: "Lisos OEM", price: 165029 }
+        ]
+      },
+      { 
+        id: 326, 
+        name: "Discos Traseros (Juego de 2)", 
+        carModel: "AUDI A3 1.4 TFSI",
+        category: "frenos", 
+        image: "frenos-audia3-traseros-estandar.png",
+        specs: "Ø 272 mm | Espesor: 10 mm | Altura: 48 mm | Centro: 65 mm | 5 Agujeros | Tipo: Sólido",
+        options: [
+          { name: "Ranurados y Perforados Coated PREMIUM", price: 182800 },
+          { name: "Lisos OEM", price: 133956 }
+        ]
+      },
+      { 
+        id: 327, 
+        name: "Pastillas de Freno Delanteras", 
+        carModel: "AUDI A3 1.4 TFSI",
+        category: "frenos", 
+        image: "pastillas-audia3-delanteras-lpr.png",
+        specs: "155,2 x 66 mm | Espesor: 20 mm | Sistema ATE | Con Sensor",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 79790 },
+          { name: "Orgánicas BAR evo", price: 54260 }
+        ]
+      },
+      { 
+        id: 328, 
+        name: "Pastillas de Freno Traseras", 
+        carModel: "AUDI A3 1.4 TFSI",
+        category: "frenos", 
+        image: "pastillas-audia3-traseras-lpr.png",
+        specs: "86,7 x 53 mm | Espesor: 15 mm | Sistema Girling | Sin Sensor",
+        options: [
+          { name: "Orgánicas LPR Brakes", price: 35268 },
+          { name: "Orgánicas BAR evo", price: 18056 }
+        ]
+      },
+
       // OTROS
       { id: 31, name: "Adaptador Entrec... 80 mm a 70 mm", price: 22000, category: "otros", image: "otro1.png" },
-      { id: 32, name: "Kit 6 tornillos + 6 arandelas para volante", price: 19000, category: "otros", image: "otro2.png" }
+      { id: 32, name: "Kit 6 tornillos + 6 arandelas para volante", price: 19000, category: "otros", image: "otro2.png" },
+      { id: 33, name: "Pomo perforados teflón", price: 14300, category: "otros", image: "otro3.png" },
+      { id: 34, name: "Pomo liso teflón", price: 13000, category: "otros", image: "otro4.png" },
+      { id: 35, name: "Pomo aluminio liso", price: 25000, category: "otros", image: "otro5.png" },
+      { id: 36, name: "Pomo aluminio perforado", price: 27000, category: "otros", image: "otro6.png" },
+      { id: 37, name: "Pomo aluminio perforado NEGRO!", price: 30000, category: "otros", image: "otro7.png" },
+      { id: 38, name: "Pomo aluminio perforado con pulsador", price: 30000, category: "otros", image: "otro8.png" },
+      { id: 39, name: "Pomo aluminio liso con pulsador", price: 27000, category: "otros", image: "otro9.png" },
+      { id: 40, name: "Pomo liso teflón con pulsador", price: 15500, category: "otros", image: "otro10.png" },
+      { id: 41, name: "Varillas selectora caja Lancia. Con rotulas", price: 78000, category: "otros", image: "otro11.png" },
+      { id: 42, name: "Selectora completa caja lancia rotulada", price: 215000, category: "otros", image: "otro12.png" },
+      { id: 43, name: "Selectora completa vw gol/senda rotulada", price: 150000, category: "otros", image: "otro13.png" },
+      { id: 44, name: "Palanca selectora caja lancia sin pomo", price: 28000, category: "otros", image: "otro14.png" },
+      { id: 45, name: "Strut bar Fiat uno/147/128", price: 50000, category: "otros", image: "otro15.png" },
+      { id: 46, name: "Eleva capo fiat 147/128", price: 10000, category: "otros", image: "otro16.png" },
+      { id: 47, name: "Pulsador leva al volante", price: 42000, category: "otros", image: "otro17.png" },
+      { id: 48, name: "Kit pulsador para volante ONFIRE", price: 35000, category: "otros", image: "otro18.png" },
+      { id: 49, name: "Kit pulsador para volante GALANT O STICK", price: 35000, category: "otros", image: "otro19.png" },
+      { id: 50, name: "Soportes de butaca competicion", price: 45000, category: "otros", image: "otro20.png" },
+      { id: 51, name: "Torre selectora caja lancia", price: 43000, category: "otros", image: "otro21.png" },
+      { id: 52, name: "Pata motor Fiat 147 lado caja", price: 41000, category: "otros", image: "otro22.png" },
+      { id: 53, name: "Pata motor Fiat 147 lado distribucion", price: 41000, category: "otros", image: "otro23.png" },
+      { id: 54, name: "Pata de caja Fiat Lancia Puente 128/147", price: 46000, category: "otros", image: "otro24.png" },
+      { id: 55, name: "Deflector Gol/senda/saveiro G1", price: 25000, category: "otros", image: "otro25.png" },
+      { id: 56, name: "Tapas cubre calefaccion fiat /147/128/UNO", price: 16000, category: "otros", image: "otro26.png" },
+      { id: 57, name: "Patas de motor VW gol/senda/saveiro", price: 68000, category: "otros", image: "otro27.png" },
+      { id: 58, name: "Pata de caja gol/senda/saveiro", price: 41000, category: "otros", image: "otro28.png" }
     ];
 
     let cart = {};
     let selectedOptions = {};
     let currentCategory = 'all';
 
+    // RENDER CATALOG PRODUCTS
     function renderCatalog() {
       const catalogEl = document.getElementById('catalog');
       catalogEl.innerHTML = '';
@@ -1142,6 +1605,7 @@
       });
     }
 
+    // MANEJO DE OPCIONES DE PRODUCTO
     function updateProductOption(productId, optionIndex) {
       selectedOptions[productId] = parseInt(optionIndex);
       const prod = productsData.find(p => p.id === productId);
@@ -1221,6 +1685,7 @@
       }
     }
 
+    // ACTUALIZAR INTERFAZ DEL CARRITO
     function updateCartUI() {
       let totalItems = 0;
       let totalPrice = 0;
@@ -1286,6 +1751,7 @@
       renderCatalog();
     }
 
+    // BUSCADOR INTELIGENTE POR NOMBRE, MODELO DE AUTO Y CATEGORÍA
     function filterProducts() {
       const query = document.getElementById('searchInput').value.toLowerCase().trim();
       const cards = document.querySelectorAll('.product-card');
